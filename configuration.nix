@@ -50,8 +50,25 @@
     isNormalUser = true;
     description = "coni";
     extraGroups = [ "networkmanager" "wheel" ];
-    shells = pkgs.zsh;
+    shell = pkgs.zsh;
     packages = with pkgs; [];
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      n = "nvim";
+      g = "git";
+      ga = "git add";
+      gc = "git commit -m";
+      ff = "fastfetch";
+      c = "clear";
+      rb = "sudo nixos-rebuild switch --flake .";
+    };
   };
 
   programs.firefox.enable = true;

@@ -50,6 +50,7 @@
     isNormalUser = true;
     description = "coni";
     extraGroups = [ "networkmanager" "wheel" ];
+    shells = pkgs.zsh;
     packages = with pkgs; [];
   };
 

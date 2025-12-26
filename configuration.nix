@@ -109,6 +109,7 @@
     zip
     neovim
     git
+    lazygit
     btop
     fastfetch
     wget
@@ -121,6 +122,7 @@
     swww
     texlive.combined.scheme-medium
     zathura
+    fzf
  ];
 
   services.dbus.enable = true;

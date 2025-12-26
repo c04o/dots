@@ -61,26 +61,34 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      n = "nvim";
-      lg = "lazygit";
+      # System & tools
+      c = "clear";
+      v = "nvim";
+      f = "fzf";
+      ff = "fastfetch";
+      rb = "sudo nixos-rebuild switch --flake .";
+
+      # Dir nav
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      l = "ls -l";
+      ll = "ls -la";
+
+      # Git basics
       g = "git";
+      lg = "lazygit";
       ga = "git add";
+      gc = "git commit -m";
+      gp = "git push";
+      gl = "git pull";
+      gs = "git status";
+
+      # Git branching
       gb = "git branch";
       gba = "git branch -a";
       gco = "git checkout";
       gd = "git diff";
       glo = "git log --oneline --graph --decorate";
-      gc = "git commit -m";
-      gp = "git push";
-      gl = "git pull";
-      gs = "git status";
-      ff = "fastfetch";
-      c = "clear";
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      l = "ls -l";
-      ll = "ls -la";
-      rb = "sudo nixos-rebuild switch --flake .";
     };
   };
 

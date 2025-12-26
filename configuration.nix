@@ -73,6 +73,11 @@
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.firefox.enable = true;
 
   programs.steam = {

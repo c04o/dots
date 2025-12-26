@@ -62,9 +62,17 @@
 
     shellAliases = {
       n = "nvim";
+      lg = "lazygit";
       g = "git";
       ga = "git add";
+      gb = "git branch";
+      gba = "git branch -a";
+      gco = "git checkout";
+      gd = "git diff";
+      glo = "git log --oneline --graph --decorate";
       gc = "git commit -m";
+      gp = "git push";
+      gs = "git status";
       ff = "fastfetch";
       c = "clear";
       ".." = "cd ..";

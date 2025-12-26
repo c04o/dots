@@ -50,9 +50,7 @@
     isNormalUser = true;
     description = "coni";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    packages = with pkgs; [];
   };
 
   programs.firefox.enable = true;

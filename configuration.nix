@@ -23,11 +23,6 @@
   services.displayManager.gdm.enable = false;
   services.desktopManager.gnome.enable = false;
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
   programs.niri.enable = true;
 
   services.displayManager.sddm = {
@@ -74,7 +69,6 @@
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     sunsetr
-    alacritty
     ghostty
     psmisc
     unzip
@@ -87,8 +81,6 @@
     wl-clipboard
     grim
     slurp
-    hyprpaper
-    hyprsunset
     brightnessctl
     waybar
     wofi

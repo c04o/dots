@@ -67,6 +67,8 @@
       gc = "git commit -m";
       ff = "fastfetch";
       c = "clear";
+      ".." = "cd ..";
+      "..." = "cd ../..";
       rb = "sudo nixos-rebuild switch --flake .";
     };
   };

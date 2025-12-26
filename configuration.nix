@@ -72,6 +72,7 @@
       glo = "git log --oneline --graph --decorate";
       gc = "git commit -m";
       gp = "git push";
+      gl = "git pull";
       gs = "git status";
       ff = "fastfetch";
       c = "clear";

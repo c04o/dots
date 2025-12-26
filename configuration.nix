@@ -84,6 +84,7 @@
     brightnessctl
     waybar
     wofi
+    swww
     texlive.combined.scheme-medium
     zathura
  ];

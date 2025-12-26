@@ -69,6 +69,8 @@
       c = "clear";
       ".." = "cd ..";
       "..." = "cd ../..";
+      l = "ls -l";
+      ll = "ls -la";
       rb = "sudo nixos-rebuild switch --flake .";
     };
   };

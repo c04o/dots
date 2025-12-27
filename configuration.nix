@@ -83,7 +83,7 @@
         
         # Copy file content to clipboard
         cat "$1" | wl-copy
-	echo -e "\033[32m  Copied content of $1 to clipboard\033[0m"
+	echo -e "\033[32m Yanked to clipboard!\033[0m"
       }
     '';
 

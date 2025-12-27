@@ -60,11 +60,24 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
+    interactiveShellInit = ''
+      source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+      source ${pkgs.fzf}/share/fzf/completion.zsh
+
+      f() {
+        fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
+            --bind 'enter:become(nvim {})' \
+            --bind 'ctrl-y:execute-silent(cat {} | wl-copy)+abort' \
+            --bind 'ctrl-p:execute-silent(echo -n {} | wl-copy)+abort' \
+            --header 'Enter  • CTRL+Y 󰆏 • CTRL+P ' \
+            --layout=reverse --border
+      }
+    '';
+
     shellAliases = {
       # System & tools
       c = "clear";
       v = "nvim";
-      f = "fzf";
       ff = "fastfetch";
       r = "rm -I";
       rf = "rm -rf";

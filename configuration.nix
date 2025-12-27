@@ -70,7 +70,7 @@
             --bind 'enter:become(nvim {})' \
             --bind 'alt-c:execute-silent(cat {} | wl-copy)+abort' \
             --bind 'alt-p:execute-silent(echo -n {} | wl-copy)+abort' \
-            --header 'Enter  • Alt-C 󰆏 • Alt+P ' \
+            --header $'Enter \033[33m\033[0m • Alt-C \033[33m󰆏\033[0m • Alt+P \033[33m\033[0m' \
             --layout=reverse --border
       }
 
@@ -83,7 +83,7 @@
         
         # Copy file content to clipboard
         cat "$1" | wl-copy
-        echo " Copied to clipboard"
+	echo -e "\033[32m  Copied content of $1 to clipboard\033[0m"
       }
     '';
 

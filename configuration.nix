@@ -91,6 +91,7 @@
       # System & tools
       c = "clear";
       v = "nvim";
+      b = "bat";
       ff = "fastfetch";
       r = "rm -I";
       rf = "rm -rf";

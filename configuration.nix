@@ -110,6 +110,7 @@
       g = "git";
       lg = "lazygit";
       ga = "git add";
+      gaa = "git add --all";
       gc = "git commit -m";
       gp = "git push";
       gpo = "git push -u origin HEAD";

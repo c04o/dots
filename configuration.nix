@@ -95,7 +95,10 @@
       ff = "fastfetch";
       r = "rm -I";
       rf = "rm -rf";
+
+      # Nix
       rb = "sudo nixos-rebuild switch --flake .";
+      ngc = "nix-collect-garbage -d";
 
       # Dir nav
       ".." = "cd ..";
@@ -111,6 +114,7 @@
       gp = "git push";
       gpo = "git push -u origin HEAD";
       gl = "git pull";
+      glr = "git pull --rebase";
       gs = "git status";
 
       # Git branching

@@ -130,6 +130,187 @@
     enableZshIntegration = true;
   };
 
+  programs.starship = {
+    enable = true;
+    settings = {
+      "$schema" = "https://starship.rs/config-schema.json";
+      
+      palette = "gruvbox_material_dark_soft";
+
+      format = "[](red)$os$username[](bg:orange fg:red)$directory[](bg:yellow fg:orange)$git_branch$git_status[](fg:yellow bg:green)$c$rust$golang$nodejs$php$java$kotlin$haskell$python[](fg:green bg:aqua)$conda$docker_context[](fg:aqua bg:purple)$time[ ](fg:purple)$cmd_duration$line_break$character";
+
+      palettes.gruvbox_material_dark_soft = {
+        bg_dim = "#252423";
+        bg0 = "#32302F";
+        bg1 = "#3c3836";
+        fg0 = "#d4be98";
+        red = "#ea6962";
+        green = "#a9b665";
+        yellow = "#d8a657";
+        blue = "#7daea3";
+        purple = "#d3869b";
+        aqua = "#89b482";
+        orange = "#e78a4e";
+      };
+
+      os = {
+        disabled = false;
+        style = "bg:red fg:bg0";
+        symbols = {
+          Windows = "";
+          Ubuntu = "󰕈";
+          SUSE = "";
+          Raspbian = "󰐿";
+          Mint = "󰣭";
+          Macos = "󰀵";
+          Manjaro = "";
+          Linux = "󰌽";
+          Gentoo = "󰣨";
+          Fedora = "󰣛";
+          Alpine = "";
+          Amazon = "";
+          Android = "";
+          AOSC = "";
+          Arch = "󰣇";
+          CentOS = "";
+          Debian = "󰣚";
+          Redhat = "󱄛";
+          RedHatEnterprise = "󱄛";
+          NixOS = "";
+        };
+      };
+
+      username = {
+        show_always = true;
+        style_user = "bg:red fg:bg0";
+        style_root = "bg:red fg:bg0";
+        format = "[ $user]($style)";
+      };
+
+      directory = {
+        style = "bg:orange fg:bg0";
+        format = "[ $path ]($style)";
+        truncation_length = 3;
+        truncation_symbol = "…/";
+        substitutions = {
+          "Documents" = "󰈙 ";
+          "Downloads" = " ";
+          "Music" = "󰝚 ";
+          "Pictures" = " ";
+          "Developer" = "󰲋 ";
+        };
+      };
+
+      git_branch = {
+        symbol = "";
+        style = "bg:yellow";
+        format = "[[ $symbol $branch ](fg:bg0 bg:yellow)]($style)";
+      };
+
+      git_status = {
+        style = "bg:yellow";
+        format = "[[($all_status$ahead_behind )](fg:bg0 bg:yellow)]($style)";
+      };
+
+      nodejs = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      c = {
+        symbol = " ";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      rust = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      golang = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      php = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      java = {
+        symbol = " ";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      kotlin = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      haskell = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:bg0 bg:green)]($style)";
+      };
+
+      python = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version)(\(#$virtualenv\)) ](fg:bg0 bg:green)]($style)";
+      };
+
+      docker_context = {
+        symbol = "";
+        style = "bg:aqua";
+        format = "[[ $symbol( $context) ](fg:bg0 bg:aqua)]($style)";
+      };
+
+      conda = {
+        symbol = "  ";
+        style = "bg:aqua";
+        format = "[[ $symbol$environment ](fg:bg0 bg:aqua)]($style)";
+        ignore_base = false;
+      };
+
+      time = {
+        disabled = false;
+        time_format = "%R";
+        style = "bg:purple";
+        format = "[[  $time ](fg:bg0 bg:purple)]($style)";
+      };
+
+      line_break = {
+        disabled = false;
+      };
+
+      character = {
+        disabled = false;
+        success_symbol = "[❯](bold fg:green)";
+        error_symbol = "[❯](bold fg:red)";
+        vimcmd_symbol = "[❮](bold fg:green)";
+        vimcmd_replace_one_symbol = "[❮](bold fg:purple)";
+        vimcmd_replace_symbol = "[❮](bold fg:purple)";
+        vimcmd_visual_symbol = "[❮](bold fg:yellow)";
+      };
+
+      cmd_duration = {
+        show_milliseconds = true;
+        format = " in $duration ";
+        style = "bg:purple";
+        disabled = false;
+        show_notifications = true;
+        min_time_to_notify = 45000;
+      };
+    };
+  };
+
   programs.firefox.enable = true;
 
   programs.steam = {

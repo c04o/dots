@@ -137,6 +137,8 @@
     texlive.combined.scheme-medium
     zathura
     fzf
+    bat
+    ripgrep
  ];
 
   services.dbus.enable = true;

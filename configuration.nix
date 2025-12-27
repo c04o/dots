@@ -146,7 +146,7 @@
 
       palettes.gruvbox_material_dark_soft = {
         bg_dim = "#252423";
-        bg0 = "#32302F";
+        bg0 = "#32302f";
         bg1 = "#3c3836";
         fg0 = "#d4be98";
         red = "#ea6962";

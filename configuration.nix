@@ -66,6 +66,8 @@
       v = "nvim";
       f = "fzf";
       ff = "fastfetch";
+      r = "rm -I";
+      rf = "rm -rf";
       rb = "sudo nixos-rebuild switch --flake .";
 
       # Dir nav
@@ -80,6 +82,7 @@
       ga = "git add";
       gc = "git commit -m";
       gp = "git push";
+      gpo = "git push -u origin HEAD";
       gl = "git pull";
       gs = "git status";
 
@@ -88,6 +91,9 @@
       gba = "git branch -a";
       gco = "git checkout";
       gd = "git diff";
+      gst = "git stash";
+      gstp = "git stash pop";
+      gstl = "git stash list";
       glo = "git log --oneline --graph --decorate";
     };
   };

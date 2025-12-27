@@ -64,13 +64,26 @@
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       source ${pkgs.fzf}/share/fzf/completion.zsh
 
+      unalias f 2>/dev/null
       f() {
         fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
             --bind 'enter:become(nvim {})' \
-            --bind 'ctrl-y:execute-silent(cat {} | wl-copy)+abort' \
-            --bind 'ctrl-p:execute-silent(echo -n {} | wl-copy)+abort' \
-            --header 'Enter  • CTRL+Y 󰆏 • CTRL+P ' \
+            --bind 'alt-c:execute-silent(cat {} | wl-copy)+abort' \
+            --bind 'alt-p:execute-silent(echo -n {} | wl-copy)+abort' \
+            --header 'Enter  • Alt-C 󰆏 • Alt+P ' \
             --layout=reverse --border
+      }
+
+      y() {
+        # If no argument is passed, print usage
+        if [ -z "$1" ]; then
+          echo "Usage: y <filename>"
+          return 1
+        fi
+        
+        # Copy file content to clipboard
+        cat "$1" | wl-copy
+        echo " Copied to clipboard"
       }
     '';
 

@@ -16,7 +16,15 @@
 
   time.timeZone = "America/Managua";
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [ "en_US.UTF-8/UTF-8" ];
+  };
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   services.xserver.enable = false;
 
@@ -325,6 +333,11 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
+    package = pkgs.steam.override {
+      extraEnv = {
+        STEAM_FORCE_DESKTOPUI_SCALING = "1";
+      };
+    };
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
@@ -365,6 +378,17 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "*";
+  };
+
+  systemd.user.services.xwayland-satellite = {
+    description = "Xwayland Satellite";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      # This removes WAYLAND_DISPLAY before starting the satellite
+      ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      Restart = "always";
+    };
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

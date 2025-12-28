@@ -372,6 +372,10 @@
     ripgrep
  ];
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.symbols-only
+  ];
+
   services.dbus.enable = true;
 
   xdg.portal = {

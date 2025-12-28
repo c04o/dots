@@ -374,6 +374,7 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
+    annotation-mono
   ];
 
   services.dbus.enable = true;

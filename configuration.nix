@@ -114,8 +114,7 @@
       # Dir nav
       ".." = "cd ..";
       "..." = "cd ../..";
-      l = "ls -l";
-      ll = "ls -la";
+      l = "ls -lA";
 
       # Git basics
       g = "git";

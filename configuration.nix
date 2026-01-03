@@ -338,9 +338,6 @@
         STEAM_FORCE_DESKTOPUI_SCALING = "1";
       };
     };
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -370,6 +367,7 @@
     fzf
     bat
     ripgrep
+    protonup-qt
  ];
 
   fonts.packages = with pkgs; [

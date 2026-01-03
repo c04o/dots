@@ -24,6 +24,9 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver 
+    ];
   };
 
   services.xserver.enable = false;
@@ -111,8 +114,7 @@
       # Dir nav
       ".." = "cd ..";
       "..." = "cd ../..";
-      l = "ls -l";
-      ll = "ls -la";
+      l = "ls -lA";
 
       # Git basics
       g = "git";
@@ -338,9 +340,6 @@
         STEAM_FORCE_DESKTOPUI_SCALING = "1";
       };
     };
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -370,11 +369,13 @@
     fzf
     bat
     ripgrep
+    protonup-qt
  ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
     annotation-mono
+    inter
   ];
 
   services.dbus.enable = true;

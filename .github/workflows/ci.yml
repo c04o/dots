@@ -1,10 +1,15 @@
 name: CI
 
 on:
+  # run when pushing to these
   push:
     branches:
       - main
+      - dev
+      - actions
   pull_request:
+    branches:
+      - main # catches errors before merging
 
 jobs:
   check:

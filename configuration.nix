@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -18,14 +19,14 @@
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8/UTF-8" ];
+    supportedLocales = ["en_US.UTF-8/UTF-8"];
   };
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      intel-media-driver 
+      intel-media-driver
     ];
   };
 
@@ -60,7 +61,7 @@
   users.users.coni = {
     isNormalUser = true;
     description = "coni";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };
@@ -72,30 +73,30 @@
     syntaxHighlighting.enable = true;
 
     interactiveShellInit = ''
-      source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-      source ${pkgs.fzf}/share/fzf/completion.zsh
+           source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+           source ${pkgs.fzf}/share/fzf/completion.zsh
 
-      unalias f 2>/dev/null
-      f() {
-        fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
-            --bind 'enter:become(nvim {})' \
-            --bind 'alt-c:execute-silent(cat {} | wl-copy)+abort' \
-            --bind 'alt-p:execute-silent(echo -n {} | wl-copy)+abort' \
-            --header $'Enter \033[33m\033[0m • Alt-C \033[33m󰆏\033[0m • Alt+P \033[33m\033[0m' \
-            --layout=reverse --border
-      }
+           unalias f 2>/dev/null
+           f() {
+             fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
+                 --bind 'enter:become(nvim {})' \
+                 --bind 'alt-c:execute-silent(cat {} | wl-copy)+abort' \
+                 --bind 'alt-p:execute-silent(echo -n {} | wl-copy)+abort' \
+                 --header $'Enter \033[33m\033[0m • Alt-C \033[33m󰆏\033[0m • Alt+P \033[33m\033[0m' \
+                 --layout=reverse --border
+           }
 
-      y() {
-        # If no argument is passed, print usage
-        if [ -z "$1" ]; then
-          echo "Usage: y <filename>"
-          return 1
-        fi
-        
-        # Copy file content to clipboard
-        cat "$1" | wl-copy
-	echo -e "\033[32m Yanked to clipboard!\033[0m"
-      }
+           y() {
+             # If no argument is passed, print usage
+             if [ -z "$1" ]; then
+               echo "Usage: y <filename>"
+               return 1
+             fi
+
+             # Copy file content to clipboard
+             cat "$1" | wl-copy
+      echo -e "\033[32m Yanked to clipboard!\033[0m"
+           }
     '';
 
     shellAliases = {
@@ -149,7 +150,7 @@
     enable = true;
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
-      
+
       palette = "gruvbox_material_dark_soft";
 
       format = "[](orange)$os$username[](bg:yellow fg:orange)$directory[](bg:green fg:yellow)$git_branch$git_status[](fg:green bg:aqua)$c$rust$golang$nodejs$php$java$kotlin$haskell$python[](fg:aqua bg:bg3)$conda$docker_context[](fg:bg3 bg:bg1)$time[ ](fg:bg1)$cmd_duration$line_break$character";
@@ -370,7 +371,7 @@
     bat
     ripgrep
     protonup-qt
- ];
+  ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
@@ -382,14 +383,14 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     config.common.default = "*";
   };
 
   systemd.user.services.xwayland-satellite = {
     description = "Xwayland Satellite";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     serviceConfig = {
       # This removes WAYLAND_DISPLAY before starting the satellite
       ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite";
@@ -397,8 +398,7 @@
     };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   system.stateVersion = "25.05";
 }
-

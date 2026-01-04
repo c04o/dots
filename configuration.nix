@@ -112,7 +112,7 @@
 
       # Nix
       rb = "sudo nixos-rebuild switch --flake .";
-      ngc = "nix-collect-garbage -d";
+      ng = "nix-collect-garbage -d";
 
       # Dir nav
       ".." = "cd ..";

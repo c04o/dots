@@ -348,7 +348,7 @@
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     sunsetr
-    ghostty
+    alacritty
     psmisc
     unzip
     zip

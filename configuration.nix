@@ -370,6 +370,7 @@
     typstyle
     zathura
     fzf
+    eza
     bat
     ripgrep
     protonup-qt

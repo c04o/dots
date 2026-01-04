@@ -86,7 +86,7 @@
                  --layout=reverse --border
            }
 
-           y() {
+           ya() {
              # If no argument is passed, print usage
              if [ -z "$1" ]; then
                echo "Usage: y <filename>"
@@ -107,6 +107,7 @@
       ff = "fastfetch";
       r = "rm -I";
       rf = "rm -rf";
+      y = "yazi";
 
       # Nix
       rb = "sudo nixos-rebuild switch --flake .";

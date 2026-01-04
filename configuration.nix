@@ -90,7 +90,7 @@
            ya() {
              # If no argument is passed, print usage
              if [ -z "$1" ]; then
-               echo "Usage: y <filename>"
+               echo "Usage: ya <filename>"
                return 1
              fi
 

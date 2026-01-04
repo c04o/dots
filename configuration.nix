@@ -115,7 +115,7 @@
       # Dir nav
       ".." = "cd ..";
       "..." = "cd ../..";
-      l = "ls -lA";
+      e = "eza -lah --icons --no-permissions --git --group-directories-first";
 
       # Git basics
       g = "git";

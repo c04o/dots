@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  # run when pushing to these
+  push:
+    branches:
+      - main
+      - dev
+      - actions
+  pull_request:
+    branches:
+      - main # catches errors before merging
+
+jobs:
+  check:
+    name: Lint & Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Check Formatting
+        run: nix run nixpkgs#alejandra -- --check .
+
+      - name: Flake Check
+        run: nix flake check
+
+  build:
+    name: Build System
+    needs: check 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build NixOS System
+        run: nix build .#nixosConfigurations.c04o.config.system.build.toplevel

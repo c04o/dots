@@ -365,7 +365,9 @@
     waybar
     wofi
     swww
-    texlive.combined.scheme-medium
+    typst
+    tinymist
+    typstyle
     zathura
     fzf
     bat

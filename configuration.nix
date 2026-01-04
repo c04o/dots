@@ -113,6 +113,7 @@
       # Nix
       rb = "sudo nixos-rebuild switch --flake .";
       ng = "nix-collect-garbage -d";
+      aj = "alejandra .";
 
       # Dir nav
       ".." = "cd ..";
@@ -374,6 +375,7 @@
     fzf
     eza
     yazi
+    alejandra
     bat
     ripgrep
     protonup-qt

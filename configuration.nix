@@ -371,6 +371,7 @@
     zathura
     fzf
     eza
+    yazi
     bat
     ripgrep
     protonup-qt

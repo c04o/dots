@@ -108,6 +108,7 @@
       r = "rm -I";
       rf = "rm -rf";
       y = "yazi";
+      bt = "btop";
 
       # Nix
       rb = "sudo nixos-rebuild switch --flake .";

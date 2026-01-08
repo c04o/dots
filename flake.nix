@@ -9,6 +9,7 @@
   outputs = {
     self,
     nixpkgs,
+    zen-browser,
     ...
   }: {
     nixosConfigurations."c04o" = nixpkgs.lib.nixosSystem {

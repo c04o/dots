@@ -381,6 +381,19 @@
     protonup-qt
   ];
 
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        sansSerif = ["Inter"];
+        monospace = [
+          "Annotation Mono"
+          "Symbols Nerd Font"
+        ];
+      };
+    };
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
     annotation-mono

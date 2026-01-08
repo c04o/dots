@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -89,7 +90,7 @@
            ya() {
              # If no argument is passed, print usage
              if [ -z "$1" ]; then
-               echo "Usage: y <filename>"
+               echo "Usage: ya <filename>"
                return 1
              fi
 
@@ -330,8 +331,6 @@
     };
   };
 
-  programs.firefox.enable = true;
-
   programs.gamemode.enable = true;
 
   programs.steam = {
@@ -352,6 +351,7 @@
     xwayland-satellite
     sunsetr
     alacritty
+    inputs.zen-browser.packages."${system}".default
     psmisc
     unzip
     zip
@@ -381,8 +381,23 @@
     protonup-qt
   ];
 
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        sansSerif = ["Inter"];
+        monospace = [
+          "Annotation Mono"
+          "Symbols Nerd Font"
+        ];
+      };
+    };
+  };
+
   fonts.packages = with pkgs; [
-    nerd-fonts.iosevka
+    nerd-fonts.symbols-only
+    annotation-mono
+    inter
   ];
 
   services.dbus.enable = true;

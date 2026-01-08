@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -352,6 +353,7 @@
     xwayland-satellite
     sunsetr
     alacritty
+    inputs.zen-browser.packages."${system}".default
     psmisc
     unzip
     zip

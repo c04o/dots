@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -330,8 +331,6 @@
     };
   };
 
-  programs.firefox.enable = true;
-
   programs.gamemode.enable = true;
 
   programs.steam = {
@@ -352,6 +351,7 @@
     xwayland-satellite
     sunsetr
     alacritty
+    inputs.zen-browser.packages."${system}".default
     psmisc
     unzip
     zip

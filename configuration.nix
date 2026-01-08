@@ -382,7 +382,9 @@
   ];
 
   fonts.packages = with pkgs; [
-    nerd-fonts.iosevka
+    nerd-fonts.symbols-only
+    annotation-mono
+    inter
   ];
 
   services.dbus.enable = true;

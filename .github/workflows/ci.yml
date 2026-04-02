@@ -1,0 +1,36 @@
+name: CI
+
+# when to run the ci
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Lint & Build
+    runs-on: ubuntu-latest
+    steps:
+      # clone the repo in the runner
+      - uses: actions/checkout@v4
+
+      # install the nix package manager
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      # speed up build reusing derivations
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      # check that nix files are formatted
+      - name: Check Formatting
+        run: nix run nixpkgs#alejandra -- --check .
+
+      # ensure all inputs/outputs are right
+      - name: Flake Check
+        run: nix flake check
+
+      # naturally runs if the above pass
+      - name: Build NixOS
+        run: nix build .#nixosConfigurations.c04o.config.system.build.toplevel

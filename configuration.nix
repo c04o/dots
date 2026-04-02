@@ -8,18 +8,26 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader: Standard for UEFI systems
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # bootloader & kernel
+  boot = {
+    # optimized kernel for latency/performance
+    kernelPackages = pkgs.linuxPackages_zen;
+    loader = {
+      systemd-boot = {
+        enable = true; # systemd for boot (faster for UEFI)
+        configurationLimit = 5; # limit boot entries in menu
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
-  networking.hostName = "c04o"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "c04o"; # set your hostname
+    networkmanager.enable = true; # default wi-fi config for modern DEs/WMs
+  };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/New_York";
+  # set your timezone
+  time.timeZone = "America/Managua";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

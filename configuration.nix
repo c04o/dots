@@ -29,31 +29,79 @@
   # set your timezone
   time.timeZone = "America/Managua";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  # change your inputs
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = ["en_US.UTF-8/UTF-8"];
   };
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  # intel/irisxe config
+  hardware.graphics = {
+    # install mesa (opengl/vulkan)
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+
+    # required for steam & 32-bit games
+    enable32Bit = true;
+
+    extraPackages = with pkgs; [
+      # hardware video acceleration (va-api) for intel gpus
+      intel-media-driver
+    ];
   };
+
+  services = {
+    # allow apps to communicate with each other
+    dbus.enable = true;
+
+    printing.enable = true;
+
+    # disable legacy pulseaudio
+    pulseaudio.enable = false;
+
+    # modern audio standard
+    pipewire = {
+      enable = true;
+
+      # for apps using low-level alsa
+      alsa.enable = true;
+      alsa.support32Bit = true;
+
+      # compatiblity layer so pulse apps also work
+      pulse.enable = true;
+    };
+
+    # display/login
+    xserver = {
+      # not using x11 but wayland
+      enable = false;
+
+      # set your keyboard layout/var
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+
+      # make sure gnome is off
+      desktopManager.gnome.enable = false;
+    };
+
+    # login screen manager
+    displayManager = {
+      # gnome default
+      gdm.enable = false;
+
+      # simple desktop display manager
+      sddm = {
+        enable = true;
+
+        # force it into wayland
+        wayland.enable = true;
+      };
+    };
+  };
+
+  # prevent audio stutter
+  security.rtkit.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yourusername = {

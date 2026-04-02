@@ -1,0 +1,6 @@
+# build outputs from performing a nix build
+result
+result-*
+
+# auto-generated direnv output
+.direnv

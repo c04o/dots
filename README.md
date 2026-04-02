@@ -1,0 +1,3 @@
+# dots
+
+NixOS niri rice

@@ -1,10 +1,10 @@
 {
-  config,
-  pkgs,
-  ...
+  config, # read configs from other modules
+  pkgs, # nixpkgs collection
+  ... # ignore args passed to this module
 }: {
   imports = [
-    # Include the results of the hardware scan.
+    # include the results of the hardware scan
     ./hardware-configuration.nix
   ];
 
@@ -12,18 +12,25 @@
   boot = {
     # optimized kernel for latency/performance
     kernelPackages = pkgs.linuxPackages_zen;
+
     loader = {
       systemd-boot = {
-        enable = true; # systemd for boot (faster for UEFI)
-        configurationLimit = 5; # limit boot entries in menu
+        # systemd for boot (faster for uefi)
+        enable = true;
+
+        # limit boot entries so it won't get cluttered
+        configurationLimit = 5;
       };
       efi.canTouchEfiVariables = true;
     };
   };
 
   networking = {
-    hostName = "c04o"; # set your hostname
-    networkmanager.enable = true; # default wi-fi config for modern DEs/WMs
+    # set your hostname
+    hostName = "c04o";
+
+    # default wi-fi config for modern DE/WMs
+    networkmanager.enable = true;
   };
 
   # set your timezone
@@ -167,8 +174,12 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = ["Inter"];
-        monospace = ["JetBrainsMono Nerd Font"];
+        sansSerif = [
+          "Inter"
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+        ];
       };
     };
   };
@@ -176,8 +187,12 @@
   # create a bridge to run old x11 apps (steam) on niri as it doesn't support them
   systemd.user.services.xwayland-satellite = {
     description = "Xwayland Satellite";
-    wantedBy = ["graphical-session.target"];
-    partOf = ["graphical-session.target"];
+    wantedBy = [
+      "graphical-session.target"
+    ];
+    partOf = [
+      "graphical-session.target"
+    ];
     serviceConfig = {
       # un-set WAYLAND_DISPLAY so the satellite creates its own X11 display
       ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite";
@@ -194,9 +209,17 @@
   };
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    substituters = ["https://cache.nixos.org/" "https://niri.cachix.org"];
-    trusted-public-keys = ["niri.cachix.org-1:WvSGALzHlDmGqndxl3vO111xKyCaYK4RztZYRQHIfXw="];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [
+      "https://cache.nixos.org/"
+      "https://niri.cachix.org"
+    ];
+    trusted-public-keys = [
+      "niri.cachix.org-1:WvSGALzHlDmGqndxl3vO111xKyCaYK4RztZYRQHIfXw="
+    ];
   };
 
   # DO NOT CHANGE. this is the first nixos version installed on this machine

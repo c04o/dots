@@ -115,16 +115,59 @@
     ];
   };
 
-  # Allow unfree packages
+  # packages & env
+  # allow propietary software (ew)
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile.
+  # global packages
   environment.systemPackages = with pkgs; [
-    vim
+    # This program allows you read and control device brightness
+    brightnessctl
+
+    # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
+    gnupg
+
+    # Distributed version control system
+    git
+
+    # Grab images from a Wayland compositor
+    grim
+
+    # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+    psmisc
+
+    # Select a region in a Wayland compositor
+    slurp
+
+    # Extraction utility for archives compressed in .zip format
+    unzip
+
+    # Tool for retrieving files using HTTP, HTTPS, and FTP
     wget
-    curl
-    htop
+
+    # Command-line copy/paste utilities for Wayland
+    wl-clipboard
+
+    # Xwayland (X server for interfacing X11 apps with the Wayland protocol) outside your Wayland compositor
+    xwayland-satellite
+
+    # Compressor/archiver for creating and modifying zipfiles
+    zip
   ];
+
+  fonts = {
+    packages = with pkgs; [
+      inter
+      nerd-fonts.jetbrains-mono
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        sansSerif = ["Inter"];
+        monospace = ["JetBrainsMono Nerd Font"];
+      };
+    };
+  };
 
   # create a bridge to run old x11 apps (steam) on niri as it doesn't support them
   systemd.user.services.xwayland-satellite = {

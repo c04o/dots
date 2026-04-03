@@ -126,6 +126,43 @@
     packages = with pkgs; [];
   };
 
+  programs = {
+    # physical device debugging (mobile dev)
+    adb.enable = true;
+
+    # Scrollable-tiling Wayland compositor
+    niri.enable = true;
+
+    # Z shell
+    zsh.enable = true;
+
+    # Optimise Linux system performance on demand
+    gamemode.enable = true;
+
+    # Fast cd command that learns your habits
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    # Digital distribution platform
+    steam = {
+      enable = true;
+
+      # open firewall ports for local streaming/multiplayer
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+
+      # fix for steam's ui on high-res
+      package = pkgs.steam.override {
+        extraEnv = {
+          STEAM_FORCE_DESKTOPUI_SCALING = "1";
+        };
+      };
+    };
+  };
+
   # packages & env
   # allow propietary software (ew)
   nixpkgs.config.allowUnfree = true;

@@ -1,81 +1,227 @@
 {
-  config,
-  pkgs,
-  ...
+  config, # read configs from other modules
+  pkgs, # nixpkgs collection
+  ... # ignore args passed to this module
 }: {
   imports = [
-    # Include the results of the hardware scan.
+    # include the results of the hardware scan
     ./hardware-configuration.nix
   ];
 
-  # Bootloader: Standard for UEFI systems
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # bootloader & kernel
+  boot = {
+    # optimized kernel for latency/performance
+    kernelPackages = pkgs.linuxPackages_zen;
 
-  networking.hostName = "c04o"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    loader = {
+      systemd-boot = {
+        # systemd for boot (faster for uefi)
+        enable = true;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/New_York";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+        # limit boot entries so it won't get cluttered
+        configurationLimit = 5;
+      };
+      efi.canTouchEfiVariables = true;
+    };
   };
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  networking = {
+    # set your hostname
+    hostName = "c04o";
+
+    # default wi-fi config for modern DE/WMs
+    networkmanager.enable = true;
+  };
+
+  # set your timezone
+  time.timeZone = "America/Managua";
+
+  # change your inputs
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = ["en_US.UTF-8/UTF-8"];
+  };
+
+  # intel/irisxe config
+  hardware.graphics = {
+    # install mesa (opengl/vulkan)
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yourusername = {
-    isNormalUser = true;
-    description = "coni";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      firefox
-      git
-      vscode
+    # required for steam & 32-bit games
+    enable32Bit = true;
+
+    extraPackages = with pkgs; [
+      # hardware video acceleration (va-api) for intel gpus
+      intel-media-driver
     ];
   };
 
-  # Allow unfree packages
+  services = {
+    # allow apps to communicate with each other
+    dbus.enable = true;
+
+    printing.enable = true;
+
+    # disable legacy pulseaudio
+    pulseaudio.enable = false;
+
+    # modern audio standard
+    pipewire = {
+      enable = true;
+
+      # for apps using low-level alsa
+      alsa.enable = true;
+      alsa.support32Bit = true;
+
+      # compatiblity layer so pulse apps also work
+      pulse.enable = true;
+    };
+
+    # display/login
+    xserver = {
+      # not using x11 but wayland
+      enable = false;
+
+      # set your keyboard layout/var
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+
+      # make sure gnome is off
+      desktopManager.gnome.enable = false;
+    };
+
+    # login screen manager
+    displayManager = {
+      # gnome default
+      gdm.enable = false;
+
+      # simple desktop display manager
+      sddm = {
+        enable = true;
+
+        # force it into wayland
+        wayland.enable = true;
+      };
+    };
+  };
+
+  # prevent audio stutter
+  security.rtkit.enable = true;
+
+  # define a user account. set a password with 'passwd'
+  users.users.coni = {
+    isNormalUser = true;
+    description = "coni";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      # android emulator
+      "kvm"
+      # device debugging
+      "adbusers"
+    ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [];
+  };
+
+  # packages & env
+  # allow propietary software (ew)
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile.
+  # global packages
   environment.systemPackages = with pkgs; [
-    vim
+    # This program allows you read and control device brightness
+    brightnessctl
+
+    # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
+    gnupg
+
+    # Distributed version control system
+    git
+
+    # Grab images from a Wayland compositor
+    grim
+
+    # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+    psmisc
+
+    # Select a region in a Wayland compositor
+    slurp
+
+    # Extraction utility for archives compressed in .zip format
+    unzip
+
+    # Tool for retrieving files using HTTP, HTTPS, and FTP
     wget
-    curl
-    htop
+
+    # Command-line copy/paste utilities for Wayland
+    wl-clipboard
+
+    # Xwayland (X server for interfacing X11 apps with the Wayland protocol) outside your Wayland compositor
+    xwayland-satellite
+
+    # Compressor/archiver for creating and modifying zipfiles
+    zip
   ];
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  fonts = {
+    packages = with pkgs; [
+      inter
+      nerd-fonts.jetbrains-mono
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        sansSerif = [
+          "Inter"
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+        ];
+      };
+    };
+  };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  system.stateVersion = "25.05"; # Did you read the comment?
+  # create a bridge to run old x11 apps (steam) on niri as it doesn't support them
+  systemd.user.services.xwayland-satellite = {
+    description = "Xwayland Satellite";
+    wantedBy = [
+      "graphical-session.target"
+    ];
+    partOf = [
+      "graphical-session.target"
+    ];
+    serviceConfig = {
+      # un-set WAYLAND_DISPLAY so the satellite creates its own X11 display
+      ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      Restart = "always";
+    };
+  };
+
+  # auto garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    # delete generations older than 7 days
+    options = "--delete-older-than 7d";
+  };
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [
+      "https://cache.nixos.org/"
+      "https://niri.cachix.org"
+    ];
+    trusted-public-keys = [
+      "niri.cachix.org-1:WvSGALzHlDmGqndxl3vO111xKyCaYK4RztZYRQHIfXw="
+    ];
+  };
+
+  # DO NOT CHANGE. this is the first nixos version installed on this machine
+  system.stateVersion = "25.05";
 }

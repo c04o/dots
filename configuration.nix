@@ -126,13 +126,6 @@
     htop
   ];
 
-  # allow sandboxed apps to talk to the system (file picker, screen sharing)
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.common.default = "*";
-  };
-
   # create a bridge to run old x11 apps (steam) on niri as it doesn't support them
   systemd.user.services.xwayland-satellite = {
     description = "Xwayland Satellite";

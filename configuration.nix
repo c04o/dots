@@ -103,16 +103,20 @@
   # prevent audio stutter
   security.rtkit.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yourusername = {
+  # define a user account. set a password with 'passwd'
+  users.users.coni = {
     isNormalUser = true;
     description = "coni";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      firefox
-      git
-      vscode
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      # android emulator
+      "kvm"
+      # device debugging
+      "adbusers"
     ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [];
   };
 
   # packages & env

@@ -126,12 +126,39 @@
     htop
   ];
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # allow sandboxed apps to talk to the system (file picker, screen sharing)
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.common.default = "*";
+  };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  system.stateVersion = "25.05"; # Did you read the comment?
+  # create a bridge to run old x11 apps (steam) on niri as it doesn't support them
+  systemd.user.services.xwayland-satellite = {
+    description = "Xwayland Satellite";
+    wantedBy = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
+    serviceConfig = {
+      # un-set WAYLAND_DISPLAY so the satellite creates its own X11 display
+      ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      Restart = "always";
+    };
+  };
+
+  # auto garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    # delete generations older than 7 days
+    options = "--delete-older-than 7d";
+  };
+
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    substituters = ["https://cache.nixos.org/" "https://niri.cachix.org"];
+    trusted-public-keys = ["niri.cachix.org-1:WvSGALzHlDmGqndxl3vO111xKyCaYK4RztZYRQHIfXw="];
+  };
+
+  # DO NOT CHANGE. this is the first nixos version installed on this machine
+  system.stateVersion = "25.05";
 }

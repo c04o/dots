@@ -25,6 +25,9 @@
       # Fast, native, feature-rich terminal emulator pushing modern features
       ./configs/ghostty.nix
 
+      # Scrollable-tiling Wayland compositor
+      ./configs/niri.nix
+
       # Z shell
       ./configs/zsh.nix
     ];

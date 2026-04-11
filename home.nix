@@ -1,6 +1,7 @@
 {
   pkgs, # nixpkgs
   inputs, # flakes
+  theme,
   ... # extra args
 }: {
   home = {
@@ -9,17 +10,6 @@
 
     # DO NOT CHANGE. this is the home-manager release version
     stateVersion = "25.05";
-
-    # cursor theme applied to gtk
-    pointerCursor = {
-      gtk.enable = true;
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
-
-      # uncomment if issues in xwayland
-      # x11.enable = true;
-    };
 
     imports = [
       # Fast, native, feature-rich terminal emulator pushing modern features
@@ -114,5 +104,30 @@
       userName = "c04o";
       userEmail = "166080234+c04o@users.noreply.github.com";
     };
+  };
+
+  gtk = {
+    enable = true;
+
+    theme = {
+      name = theme.gtk.themeName;
+      package = pkgs.everforest-gtk-theme;
+    };
+  };
+
+  sessionVariables = {
+    # force the theme in wayland
+    GTK_THEME = theme.gtk.themeName;
+  };
+
+  # cursor theme applied to gtk
+  pointerCursor = {
+    gtk.enable = true;
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+
+    # uncomment if issues in xwayland
+    # x11.enable = true;
   };
 }

@@ -49,4 +49,6 @@
     mono = "JetBrainsMono Nerd Font";
     propo = "JetBrainsMono Nerd Font Propo";
   };
+
+  gtk.themeName = "Everforest-Dark-B";
 }

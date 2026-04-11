@@ -21,6 +21,11 @@
       # x11.enable = true;
     };
 
+    imports = [
+      # Fast, native, feature-rich terminal emulator pushing modern features
+      ./configs/ghostty.nix
+    ];
+
     # packages for this user; not system-wide
     packages = with pkgs; [
       # Uncompromising Nix Code Formatter

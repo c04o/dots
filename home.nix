@@ -93,4 +93,15 @@
       zathura
     ];
   };
+
+  programs = {
+    # let home manager manage itself
+    home-manager.enable = true;
+
+    git = {
+      enable = true;
+      userName = "c04o";
+      userEmail = "166080234+c04o@users.noreply.github.com";
+    };
+  };
 }

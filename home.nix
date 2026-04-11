@@ -24,6 +24,9 @@
     imports = [
       # Fast, native, feature-rich terminal emulator pushing modern features
       ./configs/ghostty.nix
+
+      # Z shell
+      ./configs/zsh.nix
     ];
 
     # packages for this user; not system-wide

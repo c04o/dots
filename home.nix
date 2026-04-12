@@ -1,9 +1,30 @@
+# home.nix
 {
   pkgs, # nixpkgs
   inputs, # flakes
   theme,
   ... # extra args
 }: {
+  imports = [
+    # Fast, native, feature-rich terminal emulator pushing modern features
+    ./configs/ghostty.nix
+
+    # Scrollable-tiling Wayland compositor
+    ./configs/niri.nix
+
+    # Automatic blue light filter for Hyprland, Niri, and everything Wayland
+    ./configs/sunsetr.nix
+
+    # Minimal, blazing fast, and extremely customizable prompt for any shell
+    ./configs/starship.nix
+
+    # Wallpaper application for Wayland compositors
+    ./configs/wbg.nix
+
+    # Z shell
+    ./configs/zsh.nix
+  ];
+
   home = {
     username = "coni";
     homeDirectory = "/home/coni";
@@ -11,24 +32,22 @@
     # DO NOT CHANGE. this is the home-manager release version
     stateVersion = "25.05";
 
-    imports = [
-      # Fast, native, feature-rich terminal emulator pushing modern features
-      ./configs/ghostty.nix
+    sessionVariables = {
+      # force the theme in wayland
+      GTK_THEME = theme.gtk.themeName;
+    };
 
-      # Scrollable-tiling Wayland compositor
-      ./configs/niri.nix
+    # cursor theme applied to gtk
+    pointerCursor = {
+      gtk.enable = true;
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
 
-      # Automatic blue light filter for Hyprland, Niri, and everything Wayland
-      ./configs/sunsetr.nix
+      # uncomment if issues in xwayland
+      # x11.enable = true;
+    };
 
-      # Minimal, blazing fast, and extremely customizable prompt for any shell
-      ./configs/starship.nix
-
-      # Z shell
-      ./configs/zsh.nix
-    ];
-
-    # packages for this user; not system-wide
     packages = with pkgs; [
       # Uncompromising Nix Code Formatter
       alejandra
@@ -90,9 +109,6 @@
       # Minimal, blazing fast, and extremely customizable prompt for any shell
       starship
 
-      # Efficient animated wallpaper daemon for wayland, controlled at runtime
-      awww
-
       # Blazing fast terminal file manager written in Rust, based on async I/O
       yazi
 
@@ -119,21 +135,5 @@
       name = theme.gtk.themeName;
       package = pkgs.everforest-gtk-theme;
     };
-  };
-
-  sessionVariables = {
-    # force the theme in wayland
-    GTK_THEME = theme.gtk.themeName;
-  };
-
-  # cursor theme applied to gtk
-  pointerCursor = {
-    gtk.enable = true;
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 24;
-
-    # uncomment if issues in xwayland
-    # x11.enable = true;
   };
 }

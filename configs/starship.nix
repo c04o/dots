@@ -15,8 +15,8 @@
         + "[](bg:aqua fg:blue)$directory"
         + "[](bg:green fg:aqua)$git_branch$git_status"
         + "[](bg:yellow fg:green)$c$rust$golang$nodejs$php$java$kotlin$haskell$python"
-        + "[](bg:bg1 fg:yellow)$conda$docker_context"
-        + "[](bg:bg2 fg:bg1)$time"
+        + "[](bg:bg3 fg:yellow)$conda$docker_context"
+        + "[](bg:bg2 fg:bg3)$time"
         + "[ ](fg:bg2)$cmd_duration$line_break$character";
 
       palette = "${theme.theme.name}";
@@ -134,14 +134,14 @@
       };
       docker_context = {
         symbol = "";
-        style = "bg:bg1";
-        format = "[[ $symbol( $context) ](fg:fg0 bg:bg1)]($style)";
+        style = "bg:bg3";
+        format = "[[ $symbol( $context) ](fg:fg0 bg:bg3)]($style)";
       };
 
       conda = {
         symbol = "  ";
-        style = "bg:bg1";
-        format = "[[ $symbol$environment ](fg:fg0 bg:bg1)]($style)";
+        style = "bg:bg3";
+        format = "[[ $symbol$environment ](fg:fg0 bg:bg3)]($style)";
         ignore_base = false;
       };
 
@@ -177,8 +177,8 @@
 
       palettes.${theme.theme.name} = {
         bg0 = theme.colors.bg0;
-        bg1 = theme.colors.bg1;
         bg2 = theme.colors.bg2;
+        bg3 = theme.colors.bg3;
         fg0 = theme.colors.fg;
         red = theme.colors.red;
         green = theme.colors.green;

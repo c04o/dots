@@ -51,4 +51,9 @@
   };
 
   gtk.themeName = "Everforest-Dark-B";
+
+  wallpaper = {
+    url = "https://raw.githubusercontent.com/Apeiros-46B/everforest-walls/refs/heads/main/ultrakill/v1.png";
+    sha256 = "sha256-+dmCDg7pS7qmB6eOK01icX6sMr7lqwsaJlCk0GX7sWg=";
+  };
 }

@@ -6,11 +6,17 @@
   ... # extra args
 }: {
   imports = [
+    # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS 
+    inputs.nvf.homeManagerModules.default
+
     # Fast, native, feature-rich terminal emulator pushing modern features
     ./configs/ghostty.nix
 
     # Scrollable-tiling Wayland compositor
     ./configs/niri.nix
+
+    # Vim text editor fork focused on extensibility and agility
+    ./configs/nvf.nix
 
     # Automatic blue light filter for Hyprland, Niri, and everything Wayland
     ./configs/sunsetr.nix

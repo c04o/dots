@@ -18,6 +18,9 @@
       # Scrollable-tiling Wayland compositor
       ./configs/niri.nix
 
+      # Minimal, blazing fast, and extremely customizable prompt for any shell
+      ./configs/starship.nix
+
       # Z shell
       ./configs/zsh.nix
     ];

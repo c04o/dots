@@ -18,6 +18,9 @@
       # Scrollable-tiling Wayland compositor
       ./configs/niri.nix
 
+      # Automatic blue light filter for Hyprland, Niri, and everything Wayland
+      ./configs/sunsetr.nix
+
       # Minimal, blazing fast, and extremely customizable prompt for any shell
       ./configs/starship.nix
 

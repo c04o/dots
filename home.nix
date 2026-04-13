@@ -6,7 +6,7 @@
   ... # extra args
 }: {
   imports = [
-    # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS 
+    # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     inputs.nvf.homeManagerModules.default
 
     # Fast, native, feature-rich terminal emulator pushing modern features
@@ -23,6 +23,9 @@
 
     # Minimal, blazing fast, and extremely customizable prompt for any shell
     ./configs/starship.nix
+
+    # Highly customizable Wayland bar for Sway and Wlroots based compositors
+    ./configs/waybar.nix
 
     # Wallpaper application for Wayland compositors
     ./configs/wbg.nix

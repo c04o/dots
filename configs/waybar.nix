@@ -194,7 +194,7 @@
 
       /* spacing for modules */
       #workspaces, #window, #temperature, #cpu, #memory, #network, #pulseaudio, #battery, #clock {
-        padding: 0 12px;
+        padding: 0 8px;
         margin: 4px 2px;
       }
 
@@ -206,7 +206,7 @@
       /* disable default workspaces buttons styles */
       #workspaces button {
         /* inactive workspaces are faded */
-        color: ${theme.colors.bg};
+        color: ${theme.colors.bg5};
         background-color: transparent;
         background: transparent;
         padding: 0 5px;

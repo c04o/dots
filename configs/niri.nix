@@ -125,6 +125,7 @@
 
       window-rules = [
         {
+          # apply to all windows
           geometry-corner-radius = {
             # rounding
             top-left = 18.0;
@@ -135,11 +136,14 @@
 
           # cut client-side window shadows
           clip-to-geometry = true;
-
-          # make unfocused windows semitransparent
+        }
+        {
+          # apply to inactive windows
           matches = [
             {is-active = false;}
           ];
+
+          # make unfocused windows semitransparent
           opacity = 0.95;
         }
         {

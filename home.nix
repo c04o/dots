@@ -24,6 +24,9 @@
     # Minimal, blazing fast, and extremely customizable prompt for any shell
     ./configs/starship.nix
 
+    # Wayland-native application runner
+    ./configs/walker.nix
+
     # Highly customizable Wayland bar for Sway and Wlroots based compositors
     ./configs/waybar.nix
 

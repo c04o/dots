@@ -1,4 +1,4 @@
-name: CI
+name: ci
 
 # when to run the ci
 on:
@@ -10,27 +10,36 @@ on:
       - main
 
 jobs:
-  check:
-    name: Lint & Build
+  lint:
+    name: lint
     runs-on: ubuntu-latest
     steps:
-      # clone the repo in the runner
-      - uses: actions/checkout@v4
+      # clone repo in runner
+      - uses: actions/checkout@v5
 
-      # install the nix package manager
+      # installer
       - uses: DeterminateSystems/nix-installer-action@main
-
-      # speed up build reusing derivations
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       # check that nix files are formatted
-      - name: Check Formatting
+      - name: check formatting
         run: nix run nixpkgs#alejandra -- --check .
 
       # ensure all inputs/outputs are right
-      - name: Flake Check
+      - name: check flake
         run: nix flake check
 
-      # naturally runs if the above pass
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    # wait for lint job to pass
+    needs: lint
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      # naturally runs if the lint job passed
       - name: Build NixOS
         run: nix build .#nixosConfigurations.c04o.config.system.build.toplevel

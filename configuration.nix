@@ -117,19 +117,12 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      # android emulator
-      "kvm"
-      # device debugging
-      "adbusers"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
   programs = {
-    # physical device debugging (mobile dev)
-    adb.enable = true;
-
     # Scrollable-tiling Wayland compositor
     niri.enable = true;
 

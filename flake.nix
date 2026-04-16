@@ -8,7 +8,7 @@
 
     # Manage a user environment using Nix
     home-manager = {
-      url = "gihub:nix-community/home-manager";
+      url = "github:nix-community/home-manager";
       # prevent duplicate packages
       inputs.nixpkgs.follows = "nixpkgs";
     };

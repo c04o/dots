@@ -21,6 +21,10 @@
           "niri/workspaces"
           "niri/window"
         ];
+
+        modules-center = [
+          "center"
+        ];
         modules-right = [
           "temperature"
           "cpu"
@@ -63,6 +67,13 @@
         "niri/window" = {
           format = "{}";
           max-length = 25;
+        };
+
+        # modules-center
+        "clock" = {
+          format = "{:%a %b %d %H:%M}";
+          # format-alt = "{:%Y-%m-%d}";
+          tooltip-format = "<tt>{calendar}</tt>";
         };
 
         # modules-right
@@ -168,12 +179,6 @@
             ];
           };
         };
-
-        "clock" = {
-          format = "{:%a %b %d %H:%M}";
-          # format-alt = "{:%Y-%m-%d}";
-          tooltip-format = "<tt>{calendar}</tt>";
-        };
       };
     };
 
@@ -193,7 +198,7 @@
       }
 
       /* spacing for modules */
-      #workspaces, #window, #temperature, #cpu, #memory, #network, #pulseaudio, #battery, #clock {
+      #workspaces, #window, #clock, #temperature, #cpu, #memory, #network, #pulseaudio, #battery {
         padding: 0 8px;
         margin: 4px 2px;
       }

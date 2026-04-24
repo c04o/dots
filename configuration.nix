@@ -93,12 +93,7 @@
     };
 
     # A lightweight TUI (ncurses-like) display manager for Linux and BSD
-    displayManager.ly = {
-      enable = true;
-
-      # force it into wayland
-      wayland.enable = true;
-    };
+    displayManager.ly.enable = true;
   };
 
   # prevent audio stutter

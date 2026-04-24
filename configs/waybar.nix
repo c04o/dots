@@ -21,14 +21,19 @@
           "niri/workspaces"
           "niri/window"
         ];
+
+        modules-center = [
+          "clock"
+        ];
+
         modules-right = [
           "temperature"
           "cpu"
           "memory"
           "network"
           "pulseaudio"
+          "bluetooth"
           "battery"
-          "clock"
         ];
 
         # modules-left
@@ -63,6 +68,13 @@
         "niri/window" = {
           format = "{}";
           max-length = 25;
+        };
+
+        # modules-center
+        "clock" = {
+          format = "{:%a %b %d %H:%M}";
+          # format-alt = "{:%Y-%m-%d}";
+          tooltip-format = "<tt>{calendar}</tt>";
         };
 
         # modules-right
@@ -133,6 +145,16 @@
           on-click = "pavucontrol";
         };
 
+        "bluetooth" = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂱";
+          format-connected-battery = "󰂱 {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+        };
+
         "battery" = {
           states = {
             warning = 30;
@@ -168,12 +190,6 @@
             ];
           };
         };
-
-        "clock" = {
-          format = "{:%a %b %d %H:%M}";
-          # format-alt = "{:%Y-%m-%d}";
-          tooltip-format = "<tt>{calendar}</tt>";
-        };
       };
     };
 
@@ -193,7 +209,7 @@
       }
 
       /* spacing for modules */
-      #workspaces, #window, #temperature, #cpu, #memory, #network, #pulseaudio, #battery, #clock {
+      #workspaces, #window, #clock, #temperature, #cpu, #memory, #network, #pulseaudio, #bluetooth, #battery {
         padding: 0 8px;
         margin: 4px 2px;
       }
@@ -242,6 +258,11 @@
       /* critical states */
       #temperature.critical, #cpu.critical, #memory.critical, #battery.critical {
         color: ${theme.colors.red};
+      }
+
+      /* faded states */
+      #pulseaudio.muted, #bluetooth.disabled, #bluetooth.off {
+        color: ${theme.colors.bg5};
       }
     '';
   };

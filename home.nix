@@ -41,6 +41,9 @@
     username = "coni";
     homeDirectory = "/home/coni";
 
+    # disable the version mismatch warning
+    enableNixpkgsReleaseCheck = false;
+
     # DO NOT CHANGE. this is the home-manager release version
     stateVersion = "25.05";
 
@@ -92,7 +95,7 @@
       imv
 
       # Community-driven Nix Flake for the Zen browser
-      inputs.zen-browser.packages."${pkgs.system}".default
+      inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 
       # Vector graphics editor
       inkscape
@@ -135,8 +138,12 @@
 
     git = {
       enable = true;
-      userName = "c04o";
-      userEmail = "166080234+c04o@users.noreply.github.com";
+      settings = {
+        user = {
+          name = "Connie Caldera";
+          email = "166080234+c04o@users.noreply.github.com";
+        };
+      };
     };
   };
 

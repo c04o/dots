@@ -135,8 +135,12 @@
 
     git = {
       enable = true;
-      userName = "c04o";
-      userEmail = "166080234+c04o@users.noreply.github.com";
+      settings = {
+        user = {
+          name = "Connie Caldera";
+          email = "166080234+c04o@users.noreply.github.com";
+        };
+      };
     };
   };
 

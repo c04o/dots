@@ -92,7 +92,7 @@
       imv
 
       # Community-driven Nix Flake for the Zen browser
-      inputs.zen-browser.packages."${pkgs.system}".default
+      inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 
       # Vector graphics editor
       inkscape

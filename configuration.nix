@@ -77,6 +77,9 @@
       pulse.enable = true;
     };
 
+    # make sure gnome is off
+    desktopManager.gnome.enable = false;
+
     # display/login
     xserver = {
       # not using x11 but wayland
@@ -87,9 +90,6 @@
         layout = "us";
         variant = "";
       };
-
-      # make sure gnome is off
-      desktopManager.gnome.enable = false;
     };
 
     # login screen manager

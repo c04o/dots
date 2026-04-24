@@ -23,8 +23,9 @@
         ];
 
         modules-center = [
-          "center"
+          "clock"
         ];
+
         modules-right = [
           "temperature"
           "cpu"
@@ -32,7 +33,6 @@
           "network"
           "pulseaudio"
           "battery"
-          "clock"
         ];
 
         # modules-left

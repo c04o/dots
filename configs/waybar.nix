@@ -209,7 +209,7 @@
       }
 
       /* spacing for modules */
-      #workspaces, #window, #clock, #temperature, #cpu, #memory, #network, #pulseaudio, #battery {
+      #workspaces, #window, #clock, #temperature, #cpu, #memory, #network, #pulseaudio, #bluetooth, #battery {
         padding: 0 8px;
         margin: 4px 2px;
       }
@@ -258,6 +258,11 @@
       /* critical states */
       #temperature.critical, #cpu.critical, #memory.critical, #battery.critical {
         color: ${theme.colors.red};
+      }
+
+      /* faded states */
+      #pulseaudio.muted, #bluetooth.disabled, #bluetooth.off {
+        color: ${theme.colors.bg5};
       }
     '';
   };

@@ -77,6 +77,9 @@
       pulse.enable = true;
     };
 
+    # make sure gnome is off
+    desktopManager.gnome.enable = false;
+
     # display/login
     xserver = {
       # not using x11 but wayland
@@ -87,23 +90,14 @@
         layout = "us";
         variant = "";
       };
-
-      # make sure gnome is off
-      desktopManager.gnome.enable = false;
     };
 
-    # login screen manager
-    displayManager = {
-      # gnome default
-      gdm.enable = false;
+    # A lightweight TUI (ncurses-like) display manager for Linux and BSD
+    displayManager.ly = {
+      enable = true;
 
-      # simple desktop display manager
-      sddm = {
-        enable = true;
-
-        # force it into wayland
-        wayland.enable = true;
-      };
+      # force it into wayland
+      wayland.enable = true;
     };
   };
 

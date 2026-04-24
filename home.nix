@@ -41,6 +41,9 @@
     username = "coni";
     homeDirectory = "/home/coni";
 
+    # disable the version mismatch warning
+    enableNixpkgsReleaseCheck = false;
+
     # DO NOT CHANGE. this is the home-manager release version
     stateVersion = "25.05";
 

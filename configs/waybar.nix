@@ -32,6 +32,7 @@
           "memory"
           "network"
           "pulseaudio"
+          "bluetooth"
           "battery"
         ];
 
@@ -142,6 +143,16 @@
           };
           # click opens audio mixer
           on-click = "pavucontrol";
+        };
+
+        "bluetooth" = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂱";
+          format-connected-battery = "󰂱 {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
         };
 
         "battery" = {

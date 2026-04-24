@@ -128,12 +128,17 @@
     };
 
     # custom theme
-    themes.everforest = {
+    themes."${theme.theme.name}" = {
       style = ''
         /* typography */
         * {
           font-family: "${theme.fonts.sans}", "${theme.fonts.mono}";
           color: ${theme.colors.fg};
+        }
+
+        /* make the root wayland window transparent (gtk4 conflict) */
+        window {
+          background: transparent;
         }
 
         /* main pop-up container */

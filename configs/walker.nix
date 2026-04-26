@@ -10,7 +10,7 @@
     enable = true;
 
     # run walker as a background daemon for quick launches
-    runAsService = true;
+    # runAsService = true;
 
     config = {
       theme = "${theme.theme.name}";

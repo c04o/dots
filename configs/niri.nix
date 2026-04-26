@@ -4,7 +4,13 @@
   theme,
   inputs,
   ...
-}: {
+}: let
+  # wbg fetcher so niri can use it
+  myWallpaper = pkgs.fetchurl {
+    url = theme.wallpaper.url;
+    sha256 = theme.wallpaper.sha256;
+  };
+in {
   # import niri home manager module from the flake
   imports = [inputs.niri.homeModules.niri];
 
@@ -22,9 +28,15 @@
       spawn-at-startup = [
         {command = ["sunsetr"];}
         {command = ["xwayland-satellite"];}
+
         # start clipboard history listeners for walker
         {command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"];}
         {command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"];}
+
+        # niri launches these instead of systemd
+        {command = ["waybar"];}
+        {command = ["walker" "--gapplication-service"];}
+        {command = ["${pkgs.wbg}/bin/wbg" "${myWallpaper}"];}
       ];
 
       input = {

@@ -7,7 +7,7 @@
     enable = true;
 
     # let waybar handle its own systemd service
-    systemd.enable = true;
+    # systemd.enable = true;
 
     settings = {
       mainBar = {

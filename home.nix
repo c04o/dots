@@ -121,9 +121,6 @@
       # Utility that combines the usability of The Silver Searcher with the raw speed of grep
       ripgrep
 
-      # Minimal, blazing fast, and extremely customizable prompt for any shell
-      starship
-
       # Blazing fast terminal file manager written in Rust, based on async I/O
       yazi
 

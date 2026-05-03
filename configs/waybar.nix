@@ -18,22 +18,41 @@
 
         # module layout
         modules-left = [
+          # The workspaces module displays the currently used workspaces in niri.
           "niri/workspaces"
+
+          # The window module displays the title of the currently focused window in niri.
           "niri/window"
         ];
 
         modules-center = [
+          # clock module displays current date and time
           "clock"
         ];
 
         modules-right = [
+          # The temperature module displays the current temperature from a thermal zone.
           "temperature"
+
+          # The cpu module displays the current CPU utilization.
           "cpu"
+
+          # The memory module displays the current memory utilization.
           "memory"
+
+          # The network module displays information about the current network connections.
           "network"
+
+          # PulseAudio is a networked low-latency sound server for Linux, POSIX and Windows systems.
           "pulseaudio"
+
+          # The bluetooth module displays information about a bluetooth controller and its connections.
           "bluetooth"
+
+          # The language module displays the currently selected language.
           "niri/language"
+
+          # The battery module displays the current capacity and state (eg. charging) of your battery.
           "battery"
         ];
 
@@ -157,10 +176,10 @@
         };
 
         "niri/language" = {
-          # show abbreviated layout names ('en', 'es')
+          # {short}: Short name of layout (e.g. "us"). Equals to {}.
           format = "󰌌 {short}";
 
-          # full name
+          # {long}: Long name of layout (e.g. "English (Dvorak)").
           tooltip-format = "{long}";
         };
 

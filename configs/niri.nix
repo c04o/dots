@@ -26,6 +26,7 @@ in {
       };
 
       spawn-at-startup = [
+        {command = ["elephant"];}
         {command = ["sunsetr"];}
         {command = ["xwayland-satellite"];}
 

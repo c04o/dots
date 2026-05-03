@@ -33,6 +33,7 @@
           "network"
           "pulseaudio"
           "bluetooth"
+          "niri/language"
           "battery"
         ];
 
@@ -155,6 +156,14 @@
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
         };
 
+        "niri/language" = {
+          # show abbreviated layout names ('en', 'es')
+          format = "󰌌 {short}";
+
+          # full name
+          tooltip-format = "{long}";
+        };
+
         "battery" = {
           states = {
             warning = 30;
@@ -209,7 +218,7 @@
       }
 
       /* spacing for modules */
-      #workspaces, #window, #clock, #temperature, #cpu, #memory, #network, #pulseaudio, #bluetooth, #battery {
+      #workspaces, #window, #clock, #temperature, #cpu, #memory, #network, #pulseaudio, #bluetooth, #language, #battery {
         padding: 0 8px;
         margin: 4px 2px;
       }

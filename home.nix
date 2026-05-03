@@ -9,6 +9,9 @@
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     inputs.nvf.homeManagerModules.default
 
+    # Monitor of resources
+    ./configs/btop.nix
+
     # Fast, native, feature-rich terminal emulator pushing modern features
     ./configs/ghostty.nix
 
@@ -72,9 +75,6 @@
 
       # Cat(1) clone with syntax highlighting and Git integration
       bat
-
-      # Monitor of resources
-      btop
 
       # Wayland clipboard manager
       cliphist

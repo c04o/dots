@@ -64,7 +64,7 @@ in {
       };
 
       layout = {
-        gaps = 0;
+        gaps = 8;
         center-focused-column = "never";
         default-column-width = {proportion = 0.5;};
 
@@ -75,7 +75,12 @@ in {
         ];
 
         # won't disappear after focus
-        border.enable = false;
+        border = {
+          enable = true;
+          width = 2;
+          active.color = theme.colors.aqua;
+          inactive.color = theme.colors.bg_dim;
+        };
 
         # disappears after focus
         focus-ring.enable = false;
@@ -149,15 +154,6 @@ in {
 
           # cut client-side window shadows
           clip-to-geometry = true;
-        }
-        {
-          # apply to inactive windows
-          matches = [
-            {is-active = false;}
-          ];
-
-          # make unfocused windows semitransparent
-          opacity = 0.95;
         }
         {
           # fix steam notifications because xwayland blah blah

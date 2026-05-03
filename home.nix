@@ -9,6 +9,9 @@
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     inputs.nvf.homeManagerModules.default
 
+    # Monitor of resources
+    ./configs/btop.nix
+
     # Fast, native, feature-rich terminal emulator pushing modern features
     ./configs/ghostty.nix
 
@@ -73,9 +76,6 @@
       # Cat(1) clone with syntax highlighting and Git integration
       bat
 
-      # Monitor of resources
-      btop
-
       # Wayland clipboard manager
       cliphist
 
@@ -120,9 +120,6 @@
 
       # Utility that combines the usability of The Silver Searcher with the raw speed of grep
       ripgrep
-
-      # Minimal, blazing fast, and extremely customizable prompt for any shell
-      starship
 
       # Blazing fast terminal file manager written in Rust, based on async I/O
       yazi

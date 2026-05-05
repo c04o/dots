@@ -12,6 +12,9 @@
     # Monitor of resources
     ./configs/btop.nix
 
+    # Smart and user-friendly command line shell
+    ./configs/fish.nix
+
     # Fast, native, feature-rich terminal emulator pushing modern features
     ./configs/ghostty.nix
 
@@ -37,7 +40,7 @@
     ./configs/wbg.nix
 
     # Z shell
-    ./configs/zsh.nix
+    # ./configs/zsh.nix
   ];
 
   home = {
@@ -135,11 +138,21 @@
 
     git = {
       enable = true;
+
       settings = {
         user = {
-          name = "Connie Caldera";
+          name = "Roderick Caldera";
           email = "166080234+c04o@users.noreply.github.com";
         };
+        gpg = {
+          format = "openpgp";
+          program = "gpg";
+        };
+      };
+
+      signing = {
+        key = "756480CA0963316C";
+        signByDefault = true;
       };
     };
   };

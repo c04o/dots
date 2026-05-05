@@ -5,7 +5,7 @@
 }: {
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
+    enableFishIntegration = true;
     settings = {
       # catppuccin-powerline preset "fork"
       "$schema" = "https://starship.rs/config-schema.json";

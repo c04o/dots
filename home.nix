@@ -12,6 +12,9 @@
     # Monitor of resources
     ./configs/btop.nix
 
+    # Smart and user-friendly command line shell
+    ./configs/fish.nix
+
     # Fast, native, feature-rich terminal emulator pushing modern features
     ./configs/ghostty.nix
 
@@ -37,7 +40,7 @@
     ./configs/wbg.nix
 
     # Z shell
-    ./configs/zsh.nix
+    # ./configs/zsh.nix
   ];
 
   home = {

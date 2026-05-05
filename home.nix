@@ -135,11 +135,21 @@
 
     git = {
       enable = true;
+
       settings = {
         user = {
-          name = "Connie Caldera";
+          name = "Roderick Caldera";
           email = "166080234+c04o@users.noreply.github.com";
         };
+        gpg = {
+          format = "openpgp";
+          program = "gpg";
+        };
+      };
+
+      signing = {
+        key = "756480CA0963316C";
+        signByDefault = true;
       };
     };
   };

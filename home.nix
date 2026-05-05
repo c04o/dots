@@ -73,9 +73,6 @@
       # Uncompromising Nix Code Formatter
       alejandra
 
-      # Official IDE for Android (stable channel)
-      android-studio
-
       # Cat(1) clone with syntax highlighting and Git integration
       bat
 
@@ -102,9 +99,6 @@
 
       # Vector graphics editor
       inkscape
-
-      # Java, Kotlin, Groovy and Scala IDE from JetBrains
-      jetbrains.idea-ultimate
 
       # Simple terminal UI for git commands
       lazygit

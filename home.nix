@@ -151,7 +151,7 @@
       };
 
       signing = {
-        key = "756480CA0963316C";
+        key = "03CFA93B0B5FF639";
         signByDefault = true;
       };
     };

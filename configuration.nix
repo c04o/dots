@@ -107,16 +107,19 @@
       "networkmanager"
       "wheel"
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     packages = with pkgs; [];
   };
 
   programs = {
+    # Smart and user-friendly command line shell
+    fish.enable = true;
+
     # Scrollable-tiling Wayland compositor
     niri.enable = true;
 
     # Z shell
-    zsh.enable = true;
+    # zsh.enable = true;
 
     # Optimise Linux system performance on demand
     gamemode.enable = true;

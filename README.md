@@ -5,7 +5,7 @@ NixOS niri rice
 ![Static Badge](https://img.shields.io/badge/Distro-%23333c43?style=for-the-badge&logo=nixos&logoColor=%237fbbb3&label=NixOS&labelColor=%23293136)
 ![Static Badge](https://img.shields.io/badge/WM-%23333c43?style=for-the-badge&logo=niri&logoColor=%23e69875&label=niri&labelColor=%23293136)
 ![Static Badge](https://img.shields.io/badge/Terminal-%23333c43?style=for-the-badge&logo=ghostty&logoColor=%237fbbb3&label=Ghostty&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Shell-%23333c43?style=for-the-badge&logo=zsh&logoColor=%23e69875&label=Zsh&labelColor=%23293136)
+![Static Badge](https://img.shields.io/badge/Shell-%23333c43?style=for-the-badge&logo=fishshell&logoColor=%23a7c080&label=Fish&labelColor=%23293136)
 ![Static Badge](https://img.shields.io/badge/Prompt-%23333c43?style=for-the-badge&logo=starship&logoColor=%23d699b6&label=Starship&labelColor=%23293136)
 ![Static Badge](https://img.shields.io/badge/Bat-%23333c43?style=for-the-badge&logo=bat&logoColor=%23d699b6&labelColor=%23293136)
 ![Static Badge](https://img.shields.io/badge/Editor-%23333c43?style=for-the-badge&logo=neovim&logoColor=%23a7c080&label=Neovim&labelColor=%23293136)

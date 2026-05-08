@@ -7,8 +7,11 @@
   programs.fish = {
     enable = true;
 
-    # Custom fzf function translated to Fish
     interactiveShellInit = ''
+      # disable welcome greeting
+      set -g fish_greeting
+
+      # custom fzf script
       function f
         fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
             --bind 'enter:become(nvim {})' \

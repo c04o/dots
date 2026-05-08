@@ -135,7 +135,7 @@
 
       settings = {
         user = {
-          name = "Roderick Caldera";
+          name = "Connie Caldera";
           email = "166080234+c04o@users.noreply.github.com";
         };
         gpg = {

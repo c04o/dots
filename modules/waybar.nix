@@ -1,8 +1,6 @@
-{
-  pkgs,
-  theme,
-  ...
-}: {
+{pkgs, ...}: let
+  theme = import ../theme/default.nix;
+in {
   programs.waybar = {
     enable = true;
 

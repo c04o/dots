@@ -1,6 +1,8 @@
-{config, ...}: let
-  theme = import ../theme/default.nix;
-in {
+{
+  config,
+  theme,
+  ...
+}: {
   config.flake.modules.homeManager.coni = {
     programs.nvf = {
       enable = true;

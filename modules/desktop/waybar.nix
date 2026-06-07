@@ -1,6 +1,10 @@
-{pkgs, ...}: let
-  theme = import ../theme/default.nix;
-in {
+{
+  pkgs,
+  config,
+  inputs,
+  theme,
+  ...
+}: {
   config.flake.modules.homeManager.coni = {
     programs.waybar = {
       enable = true;

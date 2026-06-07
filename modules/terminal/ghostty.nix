@@ -1,6 +1,8 @@
-{pkgs, ...}: let
-  theme = import ../theme/default.nix;
-in {
+{
+  pkgs,
+  theme,
+  ...
+}: {
   config.flake.modules = {
     # user layer (home manager)
     homeManager.coni = {

@@ -2,10 +2,9 @@
   pkgs,
   config,
   inputs,
+  theme,
   ...
-}: let
-  theme = import ../theme/default.nix;
-in {
+}: {
   config.flake.modules = {
     nixos.c04o = {
       programs.niri.enable = true;

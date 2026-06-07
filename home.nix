@@ -45,13 +45,5 @@
     };
 
     programs.home-manager.enable = true;
-
-    gtk = {
-      enable = true;
-      theme = {
-        name = theme.gtk.themeName;
-        package = pkgs.everforest-gtk-theme;
-      };
-    };
   };
 }

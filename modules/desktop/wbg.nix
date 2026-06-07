@@ -1,16 +1,20 @@
-{pkgs, ...}: let
-  theme = import ../theme/default.nix;
-  myWallpaper = pkgs.fetchurl {
+{
+  pkgs,
+  theme,
+  ...
+}: let
+  # downloads the url & turn it into a local image
+  wallpaperImg = pkgs.fetchurl {
     url = theme.wallpaper.url;
-    sha256 = theme.wallpaper.sha256;
+    hash = theme.wallpaper.sha256;
   };
 in {
   config.flake.modules.homeManager.coni = {
     home.packages = [pkgs.wbg];
 
-    # append wbg directly to niri startup
+    # append wbg directly to niri startup using the downloaded image
     programs.niri.settings.spawn-at-startup = [
-      {command = ["${pkgs.wbg}/bin/wbg" "${myWallpaper}"];}
+      {command = ["${pkgs.wbg}/bin/wbg" "${wallpaperImg}"];}
     ];
   };
 }

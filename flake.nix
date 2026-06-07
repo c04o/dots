@@ -64,7 +64,6 @@
             ./hosts/c04o/configuration.nix
             ./hosts/c04o/hardware-configuration.nix
 
-            inputs.self.flakeModules.nixos.c04o
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

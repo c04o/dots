@@ -1,162 +1,57 @@
-# home.nix
 {
-  pkgs, # nixpkgs
-  inputs, # flakes
+  pkgs,
+  inputs,
   theme,
-  ... # extra args
+  ...
 }: {
-  imports = [
-    # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
-    inputs.nvf.homeManagerModules.default
+  config.flake.modules.homeManager.coni = {
+    home = {
+      username = "coni";
+      homeDirectory = "/home/coni";
+      enableNixpkgsReleaseCheck = false;
+      stateVersion = "25.05";
 
-    # Monitor of resources
-    ./configs/btop.nix
+      sessionVariables = {
+        GTK_THEME = theme.gtk.themeName;
+      };
 
-    # Smart and user-friendly command line shell
-    ./configs/fish.nix
+      pointerCursor = {
+        gtk.enable = true;
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
+        size = 24;
+      };
 
-    # Fast, native, feature-rich terminal emulator pushing modern features
-    ./configs/ghostty.nix
-
-    # Scrollable-tiling Wayland compositor
-    ./configs/niri.nix
-
-    # Vim text editor fork focused on extensibility and agility
-    ./configs/nvf.nix
-
-    # Automatic blue light filter for Hyprland, Niri, and everything Wayland
-    ./configs/sunsetr.nix
-
-    # Minimal, blazing fast, and extremely customizable prompt for any shell
-    ./configs/starship.nix
-
-    # Wayland-native application runner
-    ./configs/walker.nix
-
-    # Highly customizable Wayland bar for Sway and Wlroots based compositors
-    ./configs/waybar.nix
-
-    # Wallpaper application for Wayland compositors
-    ./configs/wbg.nix
-
-    # Z shell
-    # ./configs/zsh.nix
-  ];
-
-  home = {
-    username = "coni";
-    homeDirectory = "/home/coni";
-
-    # disable the version mismatch warning
-    enableNixpkgsReleaseCheck = false;
-
-    # DO NOT CHANGE. this is the home-manager release version
-    stateVersion = "25.05";
-
-    sessionVariables = {
-      # force the theme in wayland
-      GTK_THEME = theme.gtk.themeName;
+      packages = with pkgs; [
+        alejandra
+        bat
+        cliphist
+        eza
+        fastfetch
+        fzf
+        gimp
+        imv
+        inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+        inkscape
+        lazygit
+        libreoffice
+        mpv
+        pavucontrol
+        protonup-rs
+        ripgrep
+        yazi
+        zathura
+      ];
     };
 
-    # cursor theme applied to gtk
-    pointerCursor = {
-      gtk.enable = true;
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
+    programs.home-manager.enable = true;
 
-      # uncomment if issues in xwayland
-      # x11.enable = true;
-    };
-
-    packages = with pkgs; [
-      # Uncompromising Nix Code Formatter
-      alejandra
-
-      # Cat(1) clone with syntax highlighting and Git integration
-      bat
-
-      # Wayland clipboard manager
-      cliphist
-
-      # Modern, maintained replacement for ls
-      eza
-
-      # Actively maintained, feature-rich and performance oriented, neofetch like system information tool
-      fastfetch
-
-      # Command-line fuzzy finder written in Go
-      fzf
-
-      # GNU Image Manipulation Program
-      gimp
-
-      # Command line image viewer for tiling window managers
-      imv
-
-      # Community-driven Nix Flake for the Zen browser
-      inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-
-      # Vector graphics editor
-      inkscape
-
-      # Simple terminal UI for git commands
-      lazygit
-
-      # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
-      libreoffice
-
-      # General-purpose media player, fork of MPlayer and mplayer2
-      mpv
-
-      # PulseAudio Control
-      pavucontrol
-
-      # Rust app to install and update GE-Proton for Steam, and Wine-GE for Lutris
-      protonup-rs
-
-      # Utility that combines the usability of The Silver Searcher with the raw speed of grep
-      ripgrep
-
-      # Blazing fast terminal file manager written in Rust, based on async I/O
-      yazi
-
-      # Highly customizable and functional PDF viewer
-      zathura
-    ];
-  };
-
-  programs = {
-    # let home manager manage itself
-    home-manager.enable = true;
-
-    git = {
+    gtk = {
       enable = true;
-
-      settings = {
-        user = {
-          name = "Connie Caldera";
-          email = "166080234+c04o@users.noreply.github.com";
-        };
-        gpg = {
-          format = "openpgp";
-          program = "gpg";
-        };
+      theme = {
+        name = theme.gtk.themeName;
+        package = pkgs.everforest-gtk-theme;
       };
-
-      signing = {
-        key = "BE9C532A39E47670";
-        signByDefault = true;
-      };
-    };
-  };
-
-  gtk = {
-    enable = true;
-
-    theme = {
-      name = theme.gtk.themeName;
-      package = pkgs.everforest-gtk-theme;
     };
   };
 }

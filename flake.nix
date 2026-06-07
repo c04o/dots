@@ -36,10 +36,7 @@
     theme = import ./themes/everforest.nix;
   in
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [
-        inputs.flake-parts.flakeModules.modules
-        (inputs.import-tree ./modules)
-      ];
+      imports = [];
 
       # pass 'theme' to everything processed by (import-tree ./modules)
       _module.args = {inherit theme;};
@@ -74,7 +71,9 @@
               home-manager.useUserPackages = true;
               # pass 'theme' to the runtime home manager evaluation layer
               home-manager.extraSpecialArgs = {inherit inputs theme;};
-              home-manager.users.coni = inputs.self.flakeModules.homeManager.coni;
+
+              # assign user config directly to module path
+              home-manager.users.coni = import ./modules/home.nix;
             }
           ];
         };

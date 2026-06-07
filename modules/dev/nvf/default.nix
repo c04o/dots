@@ -7,7 +7,7 @@
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     programs.nvf = {
       enable = true;
       enableManpages = true;

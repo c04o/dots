@@ -1,8 +1,12 @@
 {
   config,
+  inputs,
   theme,
   ...
 }: {
+  imports = [
+    inputs.nvf.homeManagerModules.default
+  ];
   config.flake.modules.homeManager.coni = {
     programs.nvf = {
       enable = true;

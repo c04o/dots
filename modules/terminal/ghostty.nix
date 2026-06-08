@@ -4,7 +4,7 @@
   ...
 }: {
   # user layer (home manager)
-  homeManager.coni = {
+  home-manager.users.coni = {
     programs.ghostty = {
       enable = true;
       enableFishIntegration = true;

@@ -1,7 +1,10 @@
-{...}: let
-  theme = import ../theme/default.nix;
-in {
-  config.flake.modules.homeManager.coni = {
+{
+  configs,
+  pkgs,
+  theme,
+  ...
+}: {
+  home-manager.users.coni = {
     programs.btop = {
       enable = true;
       settings = {

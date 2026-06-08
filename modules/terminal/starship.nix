@@ -4,7 +4,7 @@
   theme,
   ...
 }: {
-  home-manager.users.coni = {
+  
     programs.starship = {
       enable = true;
       enableFishIntegration = true;
@@ -181,5 +181,4 @@
         };
       };
     };
-  };
 }

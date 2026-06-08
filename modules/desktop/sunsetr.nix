@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   tomlFormat = pkgs.formats.toml {};
 in {
-  home-manager.users.coni = {
+  
     home.packages = [pkgs.sunsetr];
 
     xdg.configFile."sunsetr/sunsetr.toml".source = tomlFormat.generate "sunsetr-config" {
@@ -20,5 +20,4 @@ in {
       sunrise = "05:00:00";
       transition_duration = 45;
     };
-  };
 }

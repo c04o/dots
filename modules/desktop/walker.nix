@@ -5,7 +5,7 @@
   theme,
   ...
 }: {
-  home-manager.users.coni = {
+  
     programs.walker = {
       enable = true;
       config = {
@@ -124,5 +124,4 @@
         '';
       };
     };
-  };
 }

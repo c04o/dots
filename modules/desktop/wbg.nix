@@ -9,12 +9,11 @@
     hash = theme.wallpaper.sha256;
   };
 in {
-  home-manager.users.coni = {
+  
     home.packages = [pkgs.wbg];
 
     # append wbg directly to niri startup using the downloaded image
     programs.niri.settings.spawn-at-startup = [
       {command = ["${pkgs.wbg}/bin/wbg" "${wallpaperImg}"];}
     ];
-  };
 }

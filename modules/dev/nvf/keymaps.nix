@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home-manager.users.coni = {
+  
     programs.nvf.settings.vim = {
       # Keybindings System Integrated with Snacks Core Features
       keymaps = [
@@ -162,5 +162,4 @@
         require('snacks').setup(snacks_config)
       '';
     };
-  };
 }

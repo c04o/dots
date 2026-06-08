@@ -5,7 +5,7 @@
   theme,
   ...
 }: {
-  home-manager.users.coni = {
+  
     programs.waybar = {
       enable = true;
 
@@ -188,5 +188,4 @@
         }
       '';
     };
-  };
 }

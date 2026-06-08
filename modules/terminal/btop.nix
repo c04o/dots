@@ -4,7 +4,7 @@
   theme,
   ...
 }: {
-  home-manager.users.coni = {
+  
     programs.btop = {
       enable = true;
       settings = {
@@ -69,5 +69,4 @@
       theme[process_mid]="${theme.colors.yellow}"
       theme[process_end]="${theme.colors.red}"
     '';
-  };
 }

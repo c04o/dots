@@ -3,7 +3,7 @@
   theme,
   ...
 }: {
-  home-manager.users.coni = {
+  
     pointerCursor = {
       gtk.enable = true;
       name = "Bibata-Modern-Classic";
@@ -18,5 +18,4 @@
         package = pkgs.everforest-gtk-theme;
       };
     };
-  };
 }

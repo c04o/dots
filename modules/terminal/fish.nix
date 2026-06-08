@@ -1,18 +1,4 @@
 {pkgs, ...}: {
-  # system-wide layer
-  nixos.c04o = {
-    programs = {
-      fish.enable = true;
-
-      zoxide = {
-        enable = true;
-        enableFishIntegration = true;
-      };
-    };
-    users.users.coni.shell = pkgs.fish;
-  };
-
-  # user layer (home manager)
   programs.fish = {
     enable = true;
 

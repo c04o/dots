@@ -29,7 +29,14 @@
     ];
   };
 
+  # required by home-manager for xdg portal linking when useUserPackages is enabled
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-dekstop-portal"
+  ];
+
   services = {
+    displayManager.ly.enable = true;
     dbus.enable = true;
     printing.enable = true;
     pulseaudio.enable = false;
@@ -54,6 +61,7 @@
   users.users.coni = {
     isNormalUser = true;
     description = "coni";
+    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -61,6 +69,12 @@
   };
 
   programs = {
+    fish.enable = true;
+    niri.enable = true;
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     gamemode.enable = true;
     # Digital distribution platform
     steam = {

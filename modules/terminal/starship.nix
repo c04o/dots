@@ -1,7 +1,10 @@
-{...}: let
-  theme = import ../theme/default.nix; # Adjusted path relative to modules/shell/
-in {
-  config.flake.modules.homeManager.coni = {
+{
+  config,
+  pkgs,
+  theme,
+  ...
+}: {
+  home-manager.users.coni = {
     programs.starship = {
       enable = true;
       enableFishIntegration = true;

@@ -15,6 +15,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nix-native configuration for niri
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     nvf.url = "github:notashelf/nvf";
 

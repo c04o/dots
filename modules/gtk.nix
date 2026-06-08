@@ -3,19 +3,19 @@
   theme,
   ...
 }: {
-  
-    pointerCursor = {
-      gtk.enable = true;
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+  };
 
-    gtk = {
-      enable = true;
-      theme = {
-        name = theme.gtk.themeName;
-        package = pkgs.everforest-gtk-theme;
-      };
+  gtk = {
+    enable = true;
+    gtk4.theme = null; #silence the 26.05 stateVersion warning
+    theme = {
+      name = theme.gtk.themeName;
+      package = pkgs.everforest-gtk-theme;
     };
+  };
 }

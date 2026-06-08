@@ -31,13 +31,6 @@
       GTK_THEME = theme.gtk.themeName;
     };
 
-    pointerCursor = {
-      gtk.enable = true;
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
-
     packages = with pkgs; [
       alejandra
       bat

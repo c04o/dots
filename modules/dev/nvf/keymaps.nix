@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     programs.nvf.settings.vim = {
       # Keybindings System Integrated with Snacks Core Features
       keymaps = [

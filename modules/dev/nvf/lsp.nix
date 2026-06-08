@@ -1,5 +1,5 @@
 {...}: {
-  config.flake.modules.homeManager.coni = {
+  homeManager.users.coni = {
     programs.nvf.settings.vim = {
       # LSP & Treesitter context engine
       lsp = {

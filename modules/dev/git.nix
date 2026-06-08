@@ -1,15 +1,7 @@
 {pkgs, ...}: {
   config.flake.modules = {
     # system-wide git requirements
-    nixos.c04o = {
-      environment.systemPackages = [
-        # Distributed version control system
-        pkgs.git
-      ];
-    };
-
-    # user-specific profile & utilities
-    homeManager.coni = {
+    home-manager.users.coni = {
       programs.git = {
         enable = true;
         settings = {

@@ -9,7 +9,7 @@
     hash = theme.wallpaper.sha256;
   };
 in {
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     home.packages = [pkgs.wbg];
 
     # append wbg directly to niri startup using the downloaded image

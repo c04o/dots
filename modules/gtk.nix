@@ -3,7 +3,7 @@
   theme,
   ...
 }: {
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     pointerCursor = {
       gtk.enable = true;
       name = "Bibata-Modern-Classic";

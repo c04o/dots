@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   tomlFormat = pkgs.formats.toml {};
 in {
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     home.packages = [pkgs.sunsetr];
 
     xdg.configFile."sunsetr/sunsetr.toml".source = tomlFormat.generate "sunsetr-config" {

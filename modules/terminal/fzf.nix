@@ -1,5 +1,5 @@
 {...}: {
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     programs.fzf = {
       enable = true;
       enableFishIntegration = true;

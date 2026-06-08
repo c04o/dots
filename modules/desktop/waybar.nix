@@ -5,7 +5,7 @@
   theme,
   ...
 }: {
-  config.flake.modules.homeManager.coni = {
+  home-manager.users.coni = {
     programs.waybar = {
       enable = true;
 

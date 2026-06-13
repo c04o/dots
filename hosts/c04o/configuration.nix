@@ -70,7 +70,7 @@
 
   programs = {
     fish.enable = true;
-    niri.enable = true;
+    # niri.enable = true;
     zoxide = {
       enable = true;
       enableFishIntegration = true;
@@ -134,9 +134,14 @@
     substituters = [
       "https://cache.nixos.org/"
       "https://niri.cachix.org"
+      "https://walker.cachix.org"
+      "https://walker-git.cachix.org"
     ];
     trusted-public-keys = [
-      "niri.cachix.org-1:WvSGALzHlDmGqndxl3vO111xKyCaYK4RztZYRQHIfXw="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
     ];
   };
 

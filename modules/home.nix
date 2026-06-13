@@ -7,18 +7,9 @@
   # explicitly import user modules relative to this file
   imports = [
     ./gtk.nix
-    ./desktop/niri.nix
-    ./desktop/sunsetr.nix
-    ./desktop/walker.nix
-    ./desktop/waybar.nix
-    ./desktop/wbg.nix
-    ./terminal/btop.nix
-    ./terminal/fish.nix
-    ./terminal/fzf.nix
-    ./terminal/ghostty.nix
-    ./terminal/starship.nix
-    ./dev/git.nix
-    ./dev/nvf/default.nix
+    (inputs.import-tree ./desktop)
+    (inputs.import-tree ./terminal)
+    (inputs.import-tree ./dev)
   ];
 
   home = {

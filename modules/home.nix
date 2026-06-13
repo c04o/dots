@@ -50,6 +50,9 @@
       ripgrep
       yazi
       zathura
+      # fonts
+      inter
+      nerd-fonts.jetbrains-mono
     ];
   };
 

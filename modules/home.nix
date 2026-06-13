@@ -32,6 +32,7 @@
     };
 
     packages = with pkgs; [
+      polkit_gnome
       alejandra
       bat
       cliphist

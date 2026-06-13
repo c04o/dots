@@ -32,7 +32,7 @@
   # required by home-manager for xdg portal linking when useUserPackages is enabled
   environment.pathsToLink = [
     "/share/applications"
-    "/share/xdg-dekstop-portal"
+    "/share/xdg-desktop-portal"
   ];
 
   services = {

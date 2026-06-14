@@ -6,6 +6,7 @@
       formatOnSave = true;
       trouble.enable = true;
       lspSignature.enable = true;
+      presets.tailwindcss-language-server.enable = true;
     };
 
     treesitter = {
@@ -71,7 +72,7 @@
       };
       toml.enable = true;
       xml.enable = true;
-      ts = {
+      typescript = {
         enable = true;
         format.enable = true;
         lsp.enable = true;
@@ -91,7 +92,6 @@
         lsp.enable = true;
         treesitter.enable = true;
       };
-      tailwind.enable = true;
       python = {
         enable = true;
         lsp.enable = true;

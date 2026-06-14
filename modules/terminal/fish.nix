@@ -1,9 +1,4 @@
 {pkgs, ...}: {
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
   programs.fish = {
     enable = true;
 
@@ -37,12 +32,10 @@
       rf = "rm -rf";
       cp = "cp -iv";
       mv = "mv -iv";
-      # always make parent dirs
       mkdir = "mkdir -p";
 
       # clipboard
       yc = "wl-copy <";
-      # companion to paste terminal output
       yp = "wl-paste";
 
       # modern search
@@ -51,7 +44,6 @@
 
       # nix
       rb = "sudo nixos-rebuild switch --flake .";
-      # test config without adding bootloader entry
       rt = "sudo nixos-rebuild test --flake .";
       ng = "nix-collect-garbage -d";
       nfu = "nix flake update";

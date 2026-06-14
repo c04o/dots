@@ -1,43 +1,34 @@
 {
-  config,
   pkgs,
-  theme,
+  config,
+  lib,
   inputs,
+  theme,
   ...
-}: let
-  # wbg fetcher so niri can use it
-  myWallpaper = pkgs.fetchurl {
-    url = theme.wallpaper.url;
-    sha256 = theme.wallpaper.sha256;
-  };
-in {
-  # import niri home manager module from the flake
-  imports = [inputs.niri.homeModules.niri];
+}: {
+  imports = [
+    inputs.niri.homeModules.niri
+  ];
 
   programs.niri = {
     enable = true;
-
     settings = {
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
-
       environment = {
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        DISPLAY = ":0";
       };
 
       spawn-at-startup = [
+        {command = ["${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"];}
         {command = ["elephant"];}
-        {command = ["sunsetr"];}
         {command = ["xwayland-satellite"];}
-
-        # start clipboard history listeners for walker
         {command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"];}
         {command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"];}
-
-        # niri launches these instead of systemd
         {command = ["waybar"];}
         {command = ["walker" "--gapplication-service"];}
-        {command = ["${pkgs.wbg}/bin/wbg" "${myWallpaper}"];}
+        {command = ["sunsetr"];}
       ];
 
       input = {
@@ -67,24 +58,18 @@ in {
         gaps = 8;
         center-focused-column = "never";
         default-column-width = {proportion = 0.5;};
-
         preset-column-widths = [
           {proportion = 1.0 / 3.0;}
           {proportion = 0.5;}
           {proportion = 1.0;}
         ];
-
-        # won't disappear after focus
         border = {
           enable = true;
           width = 2;
           active.color = theme.colors.aqua;
           inactive.color = theme.colors.bg_dim;
         };
-
-        # disappears after focus
         focus-ring.enable = false;
-
         shadow = {
           enable = true;
           softness = 30;
@@ -93,15 +78,13 @@ in {
             x = 0;
             y = 0;
           };
-          color = "#00000070"; # docs default
+          color = "#00000070";
         };
       };
 
       animations = {
         enable = true;
         slowdown = 0.75;
-        # below 1.0 speeds up
-
         workspace-switch = {
           kind = {
             easing = {
@@ -110,7 +93,6 @@ in {
             };
           };
         };
-
         window-close = {
           kind = {
             easing = {
@@ -119,7 +101,6 @@ in {
             };
           };
         };
-
         horizontal-view-movement = {
           kind = {
             spring = {
@@ -129,7 +110,6 @@ in {
             };
           };
         };
-
         window-movement = {
           kind = {
             spring = {
@@ -143,20 +123,15 @@ in {
 
       window-rules = [
         {
-          # apply to all windows
           geometry-corner-radius = {
-            # rounding
             top-left = 18.0;
             top-right = 18.0;
             bottom-left = 18.0;
             bottom-right = 18.0;
           };
-
-          # cut client-side window shadows
           clip-to-geometry = true;
         }
         {
-          # fix steam notifications because xwayland blah blah
           matches = [
             {
               app-id = "steam";
@@ -170,7 +145,6 @@ in {
           };
         }
         {
-          # set browser for pip content
           matches = [
             {
               app-id = "^(firefox|zen.*)$";
@@ -180,7 +154,6 @@ in {
           open-floating = true;
         }
       ];
-
       binds = with config.lib.niri.actions; {
         # terminal emulator
         "Mod+Return".action = spawn "ghostty";
@@ -270,6 +243,23 @@ in {
         "Mod+Comma".action = consume-window-into-column;
         "Mod+Period".action = expel-window-from-column;
       };
+    };
+  };
+
+  # resilient systemd service for xwayland-satellite
+  systemd.user.services.xwayland-satellite = {
+    Unit = {
+      Description = "Xwayland Satellite";
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+    };
+    Service = {
+      # some users need to unset WAYLAND_DISPLAY, others won't
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
     };
   };
 }

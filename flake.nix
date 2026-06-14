@@ -1,83 +1,102 @@
 {
-  description = "my nixos dots";
+  description = "NixOS niri rice";
 
-  # define where the code is pulled from
+  nixConfig = {
+    extra-substituters = [
+      "https://niri.cachix.org"
+      "https://walker.cachix.org"
+      "https://walker-git.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
+    ];
+  };
+
   inputs = {
-    # Elephant acts as a unified backend service that aggregates data from various sources (desktop applications, files, clipboard history, etc.)
-    elephant.url = "github:abenz1267/elephant";
+    # Nix Packages collection & NixOS
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # ❄️ Simplify Nix Flakes with the module system
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Import all nix files in a directory tree.
+    import-tree.url = "github:vic/import-tree";
 
     # Manage a user environment using Nix
     home-manager = {
       url = "github:nix-community/home-manager";
-      # prevent duplicate packages
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Nix-native configuration for niri
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
-    nvf.url = "github:NotAShelf/nvf";
+    nvf.url = "github:notashelf/nvf";
 
-    # Nix Packages collection & NixOS
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Community-driven Nix Flake for the Zen browser
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
-    # Multi-Purpose Launcher with a lot of features. Highly Customizable and fast.
+    # Data provider service and backend for building custom application launchers
+    elephant.url = "github:abenz1267/elephant";
+
+    # Wayland-native application runner
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
     };
-
-    # Community-driven Nix Flake for the Zen browser
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = {
-    self,
-    # defined above
-    elephant,
-    home-manager,
-    niri,
-    nvf,
-    nixpkgs,
-    walker,
-    zen-browser,
-    ...
-  } @ inputs: let
-    # capture all inputs into a variable for easy passing
-    # import for passing colorscheme, fonts
-    theme = import ./theme/default.nix;
-  in {
-    # define and name the system
-    # trigger this build with 'nixos-rebuild switch --flake .#c04o'
-    nixosConfigurations."c04o" = nixpkgs.lib.nixosSystem {
-      # intel/amd 64-bit architecture
-      system = "x86_64-linux";
+  outputs = inputs: let
+    # load your theme globally once
+    theme = import ./themes/everforest.nix;
+  in
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [];
 
-      # pass inputs to all modules (configuration.nix)
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./configuration.nix
+      # pass 'theme' to everything processed by (import-tree ./modules)
+      _module.args = {inherit theme;};
 
-        # hook Home Manager into the build process
-        home-manager.nixosModules.home-manager
-        {
-          # use the system's package list (saves disk space)
-          home-manager.useGlobalPkgs = true;
+      systems = ["x86_64-linux"];
 
-          # install packages to /etc/profiles instead of ~/.nix-profile
-          home-manager.useUserPackages = true;
+      flake = {
+        nixosConfigurations.c04o = inputs.nixpkgs.lib.nixosSystem {
+          # pass 'theme' to traditional nixos files (like configuration.nix)
+          specialArgs = {inherit inputs theme;};
+          modules = [
+            {
+              nix.settings = {
+                extra-substituters = [
+                  "https://walker.cachix.org"
+                  "https://walker-git.cachix.org"
+                ];
+                extra-trusted-public-keys = [
+                  "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+                  "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
+                ];
+              };
+            }
+            # host config paths
+            ./hosts/c04o/configuration.nix
+            ./hosts/c04o/hardware-configuration.nix
 
-          # import user config
-          home-manager.users.coni = import ./home.nix;
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              # pass 'theme' to the runtime home manager evaluation layer
+              home-manager.extraSpecialArgs = {inherit inputs theme;};
 
-          # let home-manager files use theme
-          home-manager.extraSpecialArgs = {inherit inputs theme;};
-
-          # if an existing config file conflicts, rename it to .backup instead of failing
-          home-manager.backupFileExtension = "backup";
-        }
-      ];
+              # assign user config directly to module path
+              home-manager.users.coni = import ./modules/home.nix;
+            }
+          ];
+        };
+      };
     };
-  };
 }

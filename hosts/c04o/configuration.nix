@@ -33,10 +33,16 @@
   environment.pathsToLink = [
     "/share/applications"
     "/share/xdg-desktop-portal"
+    "/share/wayland-sessions"
   ];
 
   services = {
-    displayManager.ly.enable = true;
+    displayManager = {
+      ly.enable = true;
+      sessionPackages = [
+        pkgs.niri
+      ];
+    };
     dbus.enable = true;
     printing.enable = true;
     pulseaudio.enable = false;

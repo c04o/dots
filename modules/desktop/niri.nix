@@ -17,6 +17,7 @@
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       environment = {
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        DISPLAY = ":0";
       };
 
       spawn-at-startup = [

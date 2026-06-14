@@ -26,6 +26,7 @@
       polkit_gnome
       alejandra
       bat
+      wl-clipboard
       cliphist
       eza
       fastfetch
@@ -47,6 +48,8 @@
       nerd-fonts.jetbrains-mono
     ];
   };
+
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
 }

@@ -255,7 +255,7 @@
     };
     Service = {
       # some users need to unset WAYLAND_DISPLAY, others won't
-      ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
       Restart = "always";
     };
     Install = {

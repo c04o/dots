@@ -1,0 +1,8 @@
+# set default behavior for * files
+* text=auto eol=lf
+
+# flake.lock as a generated file so it won't clutter language stats
+flake.lock linguist-generated=true
+
+# keep nix files lf (linux line endings)
+*.nix text eol=lf

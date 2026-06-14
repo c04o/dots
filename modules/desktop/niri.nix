@@ -245,4 +245,21 @@
       };
     };
   };
+
+  # resilient systemd service for xwayland-satellite
+  systemd.user.services.xwayland-satellite = {
+    Unit = {
+      Description = "Xwayland Satellite";
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+    };
+    Service = {
+      # some users need to unset WAYLAND_DISPLAY, others won't
+      ExecStart = "${pkgs.coreutils}/bin/env -u WAYLAND_DISPLAY ${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+  };
 }

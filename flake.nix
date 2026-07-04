@@ -36,6 +36,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # A sleek and minimal desktop shell thoughtfully crafted for Wayland.
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     nvf.url = "github:notashelf/nvf";
 

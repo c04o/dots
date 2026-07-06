@@ -20,6 +20,8 @@
     networkmanager.enable = true;
   };
 
+  hardware.bluetooth.enable = true;
+
   time.timeZone = "America/Managua";
 
   i18n = {
@@ -45,6 +47,8 @@
     };
     dbus.enable = true;
     printing.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
     pulseaudio.enable = false;
     pipewire = {
       enable = true;

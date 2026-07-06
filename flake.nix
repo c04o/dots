@@ -5,14 +5,10 @@
     extra-substituters = [
       "https://niri.cachix.org"
       "https://noctalia.cachix.org"
-      "https://walker.cachix.org"
-      "https://walker-git.cachix.org"
     ];
     extra-trusted-public-keys = [
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
-      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
     ];
   };
 
@@ -41,7 +37,7 @@
     # A sleek and minimal desktop shell thoughtfully crafted for Wayland.
     noctalia = {
       url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
@@ -49,15 +45,6 @@
 
     # Community-driven Nix Flake for the Zen browser
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    # Data provider service and backend for building custom application launchers
-    elephant.url = "github:abenz1267/elephant";
-
-    # Wayland-native application runner
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
-    };
   };
 
   outputs = inputs: let

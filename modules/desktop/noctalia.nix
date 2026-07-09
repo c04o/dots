@@ -29,7 +29,7 @@
           "tray"
           "workspaces"
         ];
-        thickness = 37;
+        thickness = 38;
       };
 
       dock = {
@@ -88,10 +88,8 @@
         source = "builtin";
       };
 
-      wallpaper = {
-        enabled = true;
-        default.path = "/path/to/wallpapers/wallpaper.png";
-      };
+      # just set the wallpaper imperatively bro
+      wallpaper.enabled = true;
 
       widget = {
         battery = {

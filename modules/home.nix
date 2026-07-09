@@ -38,6 +38,7 @@
       lazygit
       libreoffice
       mpv
+      nautilus
       pavucontrol
       protonup-rs
       ripgrep

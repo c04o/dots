@@ -13,9 +13,7 @@
           "notifications"
           "clipboard"
           "network"
-          "bluetooth"
           "battery"
-          "control-center"
           "session"
         ];
         margin_edge = 0;
@@ -24,9 +22,8 @@
         radius = 0;
         scale = 1.1000000089406967;
         start = [
+          "control-center"
           "launcher"
-          "media"
-          "tray"
           "workspaces"
         ];
         thickness = 38;
@@ -73,7 +70,7 @@
       };
 
       shell = {
-        font_family = "JetBrainsMono NF";
+        font_family = "Inter";
         niri_overview_type_to_launch_enabled = true;
 
         launcher = {

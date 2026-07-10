@@ -48,9 +48,6 @@
 
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     nvf.url = "github:notashelf/nvf";
-
-    # Community-driven Nix Flake for the Zen browser
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = inputs: let

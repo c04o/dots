@@ -28,6 +28,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nix Flake for Helium browser. Auto updates, Policy support, NixOS module, Home-manager module
+    helium-flake = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nix-native configuration for niri
     niri = {
       url = "github:sodiboo/niri-flake";

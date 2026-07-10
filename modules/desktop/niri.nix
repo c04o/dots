@@ -144,7 +144,7 @@
         {
           matches = [
             {
-              app-id = "^(firefox|zen.*)$";
+              app-id = "^(firefox|helium.*)$";
               title = "^Picture-in-Picture$";
             }
           ];
@@ -155,11 +155,8 @@
         # terminal emulator
         "Mod+Return".action = spawn "ghostty";
 
-        # app launcher
-        "Mod+Space".action = spawn "walker";
-
         # browser
-        "Mod+B".action = spawn "zen";
+        "Mod+B".action = spawn "helium";
 
         # system
         "Mod+Shift+E".action = quit;

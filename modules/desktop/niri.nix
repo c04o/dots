@@ -22,13 +22,10 @@
 
       spawn-at-startup = [
         {command = ["${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"];}
-        {command = ["elephant"];}
         {command = ["xwayland-satellite"];}
         {command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"];}
         {command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"];}
-        {command = ["waybar"];}
-        {command = ["walker" "--gapplication-service"];}
-        {command = ["sunsetr"];}
+        {command = ["noctalia"];}
       ];
 
       input = {

@@ -28,6 +28,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nix Flake for Helium browser. Auto updates, Policy support, NixOS module, Home-manager module
+    helium-flake = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nix-native configuration for niri
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -42,9 +48,6 @@
 
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     nvf.url = "github:notashelf/nvf";
-
-    # Community-driven Nix Flake for the Zen browser
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = inputs: let

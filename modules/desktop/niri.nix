@@ -22,13 +22,10 @@
 
       spawn-at-startup = [
         {command = ["${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"];}
-        {command = ["elephant"];}
         {command = ["xwayland-satellite"];}
         {command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"];}
         {command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"];}
-        {command = ["waybar"];}
-        {command = ["walker" "--gapplication-service"];}
-        {command = ["sunsetr"];}
+        {command = ["noctalia"];}
       ];
 
       input = {
@@ -147,7 +144,7 @@
         {
           matches = [
             {
-              app-id = "^(firefox|zen.*)$";
+              app-id = "^(firefox|helium.*)$";
               title = "^Picture-in-Picture$";
             }
           ];
@@ -158,11 +155,11 @@
         # terminal emulator
         "Mod+Return".action = spawn "ghostty";
 
-        # app launcher
-        "Mod+Space".action = spawn "walker";
-
         # browser
-        "Mod+B".action = spawn "zen";
+        "Mod+B".action = spawn "helium";
+
+        # file explorer
+        "Mod+F".action = spawn "nautilus";
 
         # system
         "Mod+Shift+E".action = quit;

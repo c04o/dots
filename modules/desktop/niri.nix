@@ -158,6 +158,9 @@
         # browser
         "Mod+B".action = spawn "helium";
 
+        # file explorer
+        "Mod+F".action = spawn "nautilus";
+
         # system
         "Mod+Shift+E".action = quit;
         "Mod+Q".action = close-window;

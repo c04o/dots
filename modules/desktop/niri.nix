@@ -12,6 +12,7 @@
 
   programs.niri = {
     enable = true;
+    package = pkgs.niri-unstable;
     settings = {
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -227,7 +228,7 @@
         "Mod+5".action = focus-workspace 5;
 
         # layout actions
-        "Mod+F".action = maximize-column;
+        "Mod+M".action = maximize-column;
         "Mod+C".action = center-column;
         "Mod+V".action = toggle-window-floating;
         "Mod+W".action = toggle-column-tabbed-display;

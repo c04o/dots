@@ -53,22 +53,16 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs: let
-    # load your theme globally once
-    theme = import ./themes/everforest.nix;
-  in
+  outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [];
-
-      # pass 'theme' to everything processed by (import-tree ./modules)
-      _module.args = {inherit theme;};
 
       systems = ["x86_64-linux"];
 
       flake = {
         nixosConfigurations.c04o = inputs.nixpkgs.lib.nixosSystem {
           # pass 'theme' to traditional nixos files (like configuration.nix)
-          specialArgs = {inherit inputs theme;};
+          specialArgs = {inherit inputs;};
           modules = [
             {
               nixpkgs.overlays = [inputs.niri.overlays.niri];
@@ -93,7 +87,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               # pass 'theme' to the runtime home manager evaluation layer
-              home-manager.extraSpecialArgs = {inherit inputs theme;};
+              home-manager.extraSpecialArgs = {inherit inputs;};
 
               # assign user config directly to module path
               home-manager.users.coni = import ./modules/home.nix;

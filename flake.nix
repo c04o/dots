@@ -48,6 +48,9 @@
 
     # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
     nvf.url = "github:notashelf/nvf";
+
+    # ❄️ Soothing pastel theme for Nix
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs: let

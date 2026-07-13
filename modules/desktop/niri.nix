@@ -228,7 +228,7 @@
         "Mod+5".action = focus-workspace 5;
 
         # layout actions
-        "Mod+F".action = maximize-column;
+        "Mod+M".action = maximize-column;
         "Mod+C".action = center-column;
         "Mod+V".action = toggle-window-floating;
         "Mod+W".action = toggle-column-tabbed-display;

@@ -1,12 +1,12 @@
 {
   pkgs,
   inputs,
-  theme,
   ...
 }: {
   # explicitly import user modules relative to this file
   imports = [
     ./gtk.nix
+    inputs.catppuccin.homeModules.catppuccin
     (inputs.import-tree ./desktop)
     (inputs.import-tree ./terminal)
     (inputs.import-tree ./dev)
@@ -17,10 +17,6 @@
     homeDirectory = "/home/coni";
     enableNixpkgsReleaseCheck = false;
     stateVersion = "25.05";
-
-    sessionVariables = {
-      GTK_THEME = theme.gtk.themeName;
-    };
 
     packages = with pkgs; [
       polkit_gnome
@@ -47,6 +43,12 @@
       inter
       nerd-fonts.jetbrains-mono
     ];
+  };
+
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    flavor = "mocha";
   };
 
   fonts.fontconfig.enable = true;

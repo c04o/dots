@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  theme,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
@@ -36,18 +31,14 @@
       # Dynamic theme matching
       theme = {
         enable = true;
-        name = theme.theme.name;
-        style = theme.theme.style;
+        name = "catppuccin";
+        style = "mocha";
+        transparent = true;
       };
 
       # Global variable space
       globals = {
         mapleader = " ";
-        everforest_background = theme.theme.style; # hard, medium, soft
-        everforest_transparent_background = 0; # 0: opaque, 1: transparent
-        everforest_better_performance = 1;
-        everforest_enable_italic = 1; # 0: disabled, 1: enabled
-        everforest_diagnostic_text_highlight = 1;
       };
     };
   };

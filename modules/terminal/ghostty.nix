@@ -16,7 +16,7 @@
       gtk-titlebar = false; # disables explicit GTK decoration decoration
       window-padding-x = 8;
       window-padding-y = 0;
-      background-opacity = 0.8;
+      background-opacity = 0.9;
     };
   };
 }

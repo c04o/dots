@@ -68,6 +68,8 @@
           specialArgs = {inherit inputs theme;};
           modules = [
             {
+              nixpkgs.overlays = [inputs.niri.overlays.niri];
+
               nix.settings = {
                 extra-substituters = [
                   "https://walker.cachix.org"

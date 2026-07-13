@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  theme,
-  ...
-}: {
+{...}: {
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
@@ -13,18 +8,16 @@
 
       format =
         "[](blue)$os$username"
-        + "[](bg:aqua fg:blue)$directory"
-        + "[](bg:green fg:aqua)$git_branch$git_status"
+        + "[](bg:teal fg:blue)$directory"
+        + "[](bg:green fg:teal)$git_branch$git_status"
         + "[](bg:yellow fg:green)$c$rust$golang$nodejs$php$java$kotlin$haskell$python"
-        + "[](bg:bg3 fg:yellow)$conda$docker_context"
-        + "[](bg:bg2 fg:bg3)$time"
-        + "[ ](fg:bg2)$cmd_duration$line_break$character";
-
-      palette = "${theme.theme.name}";
+        + "[](bg:surface1 fg:yellow)$conda$docker_context"
+        + "[](bg:surface0 fg:surface1)$time"
+        + "[ ](fg:surface0)$cmd_duration$line_break$character";
 
       os = {
         disabled = false;
-        style = "bg:blue fg:bg0";
+        style = "bg:blue fg:base";
         symbols = {
           Windows = "";
           Ubuntu = "󰕈";
@@ -51,13 +44,13 @@
 
       username = {
         show_always = true;
-        style_user = "bg:blue fg:bg0";
-        style_root = "bg:blue fg:bg0";
+        style_user = "bg:blue fg:base";
+        style_root = "bg:blue fg:base";
         format = "[ $user]($style)";
       };
 
       directory = {
-        style = "bg:aqua fg:bg0";
+        style = "bg:teal fg:base";
         format = "[ $path ]($style)";
         truncation_length = 3;
         truncation_symbol = "…/";
@@ -73,75 +66,75 @@
       git_branch = {
         symbol = "";
         style = "bg:green";
-        format = "[[ $symbol $branch ](fg:bg0 bg:green)]($style)";
+        format = "[[ $symbol $branch ](fg:base bg:green)]($style)";
       };
       git_status = {
         style = "bg:green";
-        format = "[[($all_status$ahead_behind )](fg:bg0 bg:green)]($style)";
+        format = "[[($all_status$ahead_behind )](fg:base bg:green)]($style)";
       };
 
       nodejs = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       c = {
         symbol = " ";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       rust = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       golang = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       php = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       java = {
         symbol = " ";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       kotlin = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       haskell = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
       };
       python = {
         symbol = "";
         style = "bg:yellow";
-        format = "[[ $symbol( $version)(\\(#$virtualenv\\)) ](fg:bg0 bg:yellow)]($style)";
+        format = "[[ $symbol( $version)(\\(#$virtualenv\\)) ](fg:base bg:yellow)]($style)";
       };
 
       docker_context = {
         symbol = "";
-        style = "bg:bg3";
-        format = "[[ $symbol( $context) ](fg:fg0 bg:bg3)]($style)";
+        style = "bg:surface1";
+        format = "[[ $symbol( $context) ](fg:text bg:surface1)]($style)";
       };
       conda = {
         symbol = "  ";
-        style = "bg:bg3";
-        format = "[[ $symbol$environment ](fg:fg0 bg:bg3)]($style)";
+        style = "bg:surface1";
+        format = "[[ $symbol$environment ](fg:text bg:surface1)]($style)";
         ignore_base = false;
       };
       time = {
         disabled = false;
         time_format = "%R";
-        style = "bg:bg2";
-        format = "[[  $time ](fg:fg0 bg:bg2)]($style)";
+        style = "bg:surface0";
+        format = "[[  $time ](fg:text bg:surface0)]($style)";
       };
 
       line_break.disabled = false;
@@ -151,32 +144,18 @@
         success_symbol = "[❯](bold fg:blue)";
         error_symbol = "[❯](bold fg:red)";
         vimcmd_symbol = "[❮](bold fg:blue)";
-        vimcmd_replace_one_symbol = "[❮](bold fg:purple)";
-        vimcmd_replace_symbol = "[❮](bold fg:purple)";
-        vimcmd_visual_symbol = "[❮](bold fg:orange)";
+        vimcmd_replace_one_symbol = "[❮](bold fg:mauve)";
+        vimcmd_replace_symbol = "[❮](bold fg:mauve)";
+        vimcmd_visual_symbol = "[❮](bold fg:peach)";
       };
 
       cmd_duration = {
         show_milliseconds = true;
         format = " in $duration ";
-        style = "fg:fg0";
+        style = "fg:text";
         disabled = false;
         show_notifications = true;
         min_time_to_notify = 45000;
-      };
-
-      palettes.${theme.theme.name} = {
-        bg0 = theme.colors.bg0;
-        bg2 = theme.colors.bg2;
-        bg3 = theme.colors.bg3;
-        fg0 = theme.colors.fg;
-        red = theme.colors.red;
-        green = theme.colors.green;
-        yellow = theme.colors.yellow;
-        blue = theme.colors.blue;
-        purple = theme.colors.purple;
-        aqua = theme.colors.aqua;
-        orange = theme.colors.orange;
       };
     };
   };

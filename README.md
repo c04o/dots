@@ -2,14 +2,12 @@
 
 NixOS niri rice
 
-![Static Badge](https://img.shields.io/badge/Distro-%23333c43?style=for-the-badge&logo=nixos&logoColor=%237fbbb3&label=NixOS&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/WM-%23333c43?style=for-the-badge&logo=niri&logoColor=%23e69875&label=niri&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Terminal-%23333c43?style=for-the-badge&logo=ghostty&logoColor=%237fbbb3&label=Ghostty&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Shell-%23333c43?style=for-the-badge&logo=fishshell&logoColor=%23a7c080&label=Fish&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Prompt-%23333c43?style=for-the-badge&logo=starship&logoColor=%23d699b6&label=Starship&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Bat-%23333c43?style=for-the-badge&logo=bat&logoColor=%23d699b6&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Editor-%23333c43?style=for-the-badge&logo=neovim&logoColor=%23a7c080&label=Neovim&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Browser-%23333c43?style=for-the-badge&logo=heliumbrowser&logoColor=%237fbbb3&label=Helium&labelColor=%23293136)
+![Static Badge](https://img.shields.io/badge/Distro-%231e1e2e?style=for-the-badge&logo=nixos&logoColor=%2374c7ec&label=NixOS&labelColor=%2311111b)
+![Static Badge](https://img.shields.io/badge/WM-%231e1e2e?style=for-the-badge&logo=niri&logoColor=%23fab387&label=niri&labelColor=%2311111b)
+![Static Badge](https://img.shields.io/badge/Terminal-%231e1e2e?style=for-the-badge&logo=ghostty&logoColor=%2374c7ec&label=Ghostty&labelColor=%2311111b)
+![Static Badge](https://img.shields.io/badge/Shell-%231e1e2e?style=for-the-badge&logo=fishshell&logoColor=%23a6e3a1&label=Fish&labelColor=%2311111b)
+![Static Badge](https://img.shields.io/badge/Editor-%231e1e2e?style=for-the-badge&logo=neovim&logoColor=%23a6e3a1&label=Neovim&labelColor=%2311111b)
+![Static Badge](https://img.shields.io/badge/Browser-%231e1e2e?style=for-the-badge&logo=heliumbrowser&logoColor=%2374c7ec&label=Helium&labelColor=%2311111b)
 
 My personal dotfiles riced around the
 [Everforest](https://github.com/sainnhe/everforest) dark soft variant

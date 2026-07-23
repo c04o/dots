@@ -53,4 +53,5 @@ sudo nixos-rebuild switch --flake .#yourhostname --extra-experimental-features "
 
 ## License
 
-dots is licensed under the [GNU General Public License v3.0](LICENSE)
+The source files in this repository are distributed under the
+[MIT License](LICENSE).

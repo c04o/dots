@@ -1,4 +1,4 @@
-{
+{...}: {
   programs.fastfetch = {
     enable = true;
 
@@ -6,7 +6,10 @@
     # from https://github.com/fastfetch-cli/fastfetch/blob/dev/presets/examples/13.jsonc
     settings = {
       logo = {
-        type = "small";
+        type = "file";
+        # point to the file in the same directory
+        source = "${./nix.txt}";
+        # make 'modules' sit under logo instead to the side
         position = "top";
         padding = {
           top = 1;

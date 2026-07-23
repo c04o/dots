@@ -25,7 +25,6 @@
       wl-clipboard
       cliphist
       eza
-      fastfetch
       fzf
       gimp
       imv

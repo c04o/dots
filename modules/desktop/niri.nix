@@ -290,7 +290,7 @@
         }
 
         layout {
-            gaps 8
+            gaps 7
             center-focused-column "never"
 
             default-column-width { proportion 0.5; }
@@ -302,7 +302,7 @@
             }
 
             border {
-                width 2
+                width 1.5
                 active-color "#cba6f7"
                 inactive-color "#585b70"
             }

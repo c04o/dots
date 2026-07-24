@@ -14,6 +14,17 @@ NixOS niri rice
 My personal dotfiles riced around the
 [Everforest](https://github.com/sainnhe/everforest) dark soft variant
 
+## Ackownledgements
+
+Thanks to the amazing people whose work make my desktop possible
+
+- [sobiboo](https://github.com/sodiboo)'s
+  [niri-flake](https://github.com/sodiboo/niri-flake).
+- I found the original wallpaper in
+  [this Reddit comment](https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fgot-any-ultrakill-computer-wallpapers-i-only-found-ones-for-v0-baprk7qoxbae1.png%3Fwidth%3D10000%26format%3Dpng%26auto%3Dwebp%26s%3D5a478b11b51d9bd0284a1717bbf93961c6d56076).
+- I Catppuccin'd the wallpaper with [omar](https://github.com/arrowpc)'s
+  [Palettum](https://github.com/arrowpc/palettum).
+
 ## Installation
 
 See [INSTALL.md](INSTALL.md).

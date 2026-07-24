@@ -14,7 +14,7 @@ NixOS niri rice
 My personal dotfiles riced around the
 [Everforest](https://github.com/sainnhe/everforest) dark soft variant
 
-## Ackownledgements
+## Acknowledgements
 
 Thanks to the amazing people whose work make my desktop possible
 

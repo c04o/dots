@@ -302,7 +302,7 @@
             }
 
             border {
-                width 1.35
+                width 1.4
                 active-color "#cba6f7"
                 inactive-color "#585b70"
             }

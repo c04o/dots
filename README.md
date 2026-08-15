@@ -2,7 +2,7 @@
 
 NixOS niri rice
 
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/3f38ea65-dece-4c8e-a70a-c9a04b97e8af" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/26b194d3-0c00-4490-af31-74200d4ce0cb" />
 
 ![Static Badge](https://img.shields.io/badge/Distro-%231e1e2e?style=for-the-badge&logo=nixos&logoColor=%2374c7ec&label=NixOS&labelColor=%23181825)
 ![Static Badge](https://img.shields.io/badge/WM-%231e1e2e?style=for-the-badge&logo=niri&logoColor=%23fab387&label=niri&labelColor=%23181825)

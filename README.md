@@ -1,58 +1,31 @@
 # dots
 
-NixOS niri rice
+NixOS niri desktop
 
-![Static Badge](https://img.shields.io/badge/Distro-%23333c43?style=for-the-badge&logo=nixos&logoColor=%237fbbb3&label=NixOS&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/WM-%23333c43?style=for-the-badge&logo=niri&logoColor=%23e69875&label=niri&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Terminal-%23333c43?style=for-the-badge&logo=ghostty&logoColor=%237fbbb3&label=Ghostty&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Shell-%23333c43?style=for-the-badge&logo=fishshell&logoColor=%23a7c080&label=Fish&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Prompt-%23333c43?style=for-the-badge&logo=starship&logoColor=%23d699b6&label=Starship&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Bat-%23333c43?style=for-the-badge&logo=bat&logoColor=%23d699b6&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Editor-%23333c43?style=for-the-badge&logo=neovim&logoColor=%23a7c080&label=Neovim&labelColor=%23293136)
-![Static Badge](https://img.shields.io/badge/Browser-%23333c43?style=for-the-badge&logo=heliumbrowser&logoColor=%237fbbb3&label=Helium&labelColor=%23293136)
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/7afccd9e-e5ee-4687-bb56-c6657f222570" />
 
-My personal dotfiles riced around the
-[Everforest](https://github.com/sainnhe/everforest) dark soft variant
+![Static Badge](https://img.shields.io/badge/Distro-%231e1e2e?style=for-the-badge&logo=nixos&logoColor=%2374c7ec&label=NixOS&labelColor=%23181825)
+![Static Badge](https://img.shields.io/badge/WM-%231e1e2e?style=for-the-badge&logo=niri&logoColor=%23fab387&label=niri&labelColor=%23181825)
+![Static Badge](https://img.shields.io/badge/Terminal-%231e1e2e?style=for-the-badge&logo=ghostty&logoColor=%2374c7ec&label=Ghostty&labelColor=%23181825)
+![Static Badge](https://img.shields.io/badge/Shell-%231e1e2e?style=for-the-badge&logo=fishshell&logoColor=%23a6e3a1&label=Fish&labelColor=%23181825)
+![Static Badge](https://img.shields.io/badge/Editor-%231e1e2e?style=for-the-badge&logo=neovim&logoColor=%23a6e3a1&label=Neovim&labelColor=%23181825)
+![Static Badge](https://img.shields.io/badge/Browser-%231e1e2e?style=for-the-badge&logo=heliumbrowser&logoColor=%2374c7ec&label=Helium&labelColor=%23181825)
 
-## Installation
+My personal configuration riced around the [Catppuccin](https://catppuccin.com)
+Mocha palette
 
-1. Clone the repo
+## Acknowledgements
 
-```bash
-git clone https://github.com/c04o/dots.git ~/dots
-cd ~/dots
-```
+Thanks to the amazing people whose work make my desktop possible
 
-2. Overwrite my hardware config with your actual machine's
-
-```bash
-sudo nixos-generate-config --show-hardware-config > ./hardware-configuration.nix
-```
-
-3. Replace my user variables in `home.nix`, `flake.nix`, and
-   `configuration.nix`. Update `hostName`, `i18n`, `users`, `timeZone`, to match
-   your desired setup
-
-4. Stage the new files
-
-> [!IMPORTANT]
-> Nix Flakes ignore unstaged files. Stage everything or the build won't consider
-> your changes
-
-```bash
-git add .
-```
-
-5. Build & apply
-
-> [!NOTE]
-> The extra flags ensure this works even on a fresh live USB install where
-> flakes aren't enabled by default
-
-```bash
-sudo nixos-rebuild switch --flake .#yourhostname --extra-experimental-features "nix-command flakes"
-```
+- [sodiboo](https://github.com/sodiboo)'s
+  [niri-flake](https://github.com/sodiboo/niri-flake).
+- I found the original wallpaper in
+  [this Reddit comment](https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fgot-any-ultrakill-computer-wallpapers-i-only-found-ones-for-v0-baprk7qoxbae1.png%3Fwidth%3D10000%26format%3Dpng%26auto%3Dwebp%26s%3D5a478b11b51d9bd0284a1717bbf93961c6d56076).
+- I Catppuccin'd the wallpaper with [omar](https://github.com/arrowpc)'s
+  [Palettum](https://github.com/arrowpc/palettum).
 
 ## License
 
-dots is licensed under the [GNU General Public License v3.0](LICENSE)
+The source files in this repository are licensed under the
+[MIT No Attribution License](LICENSE).

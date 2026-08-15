@@ -1,9 +1,6 @@
-{
-  pkgs,
-  theme,
-  ...
-}: {
+{pkgs, ...}: {
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
@@ -13,9 +10,5 @@
   gtk = {
     enable = true;
     gtk4.theme = null; #silence the 26.05 stateVersion warning
-    theme = {
-      name = theme.gtk.themeName;
-      package = pkgs.everforest-gtk-theme;
-    };
   };
 }

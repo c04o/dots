@@ -15,10 +15,10 @@
     # enableDynamicTheming = true; # Wallpaper-based theming (matugen)
     enableAudioWavelength = true; # Audio visualizer (cava)
     enableCalendarEvents = true; # Calendar integration (khal)
-  };
 
-  plugins = {
-    # Emoji & Unicode Launcher plugin for DankMaterialShell
-    emojiLauncher.enable = true;
+    plugins = {
+      # Emoji & Unicode Launcher plugin for DankMaterialShell
+      emojiLauncher.enable = true;
+    };
   };
 }

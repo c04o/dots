@@ -1,18 +1,24 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  # expose dms-shell options to home-manager
+{inputs, ...}: {
   imports = [
-    inputs.dms.homeModules.dank-material-shell
+    inputs.dms-plugin-registry.nixosModules.default
   ];
-  programs.dank-material-shell = {
+  programs.dms-shell = {
     enable = true;
-    package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
     systemd = {
       enable = true; # Systemd service for auto-start
       restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
     };
+
+    # Core features
+    enableSystemMonitoring = true; # System monitoring widgets (dgop)
+    # enableVPN = true; # VPN management widget
+    # enableDynamicTheming = true; # Wallpaper-based theming (matugen)
+    enableAudioWavelength = true; # Audio visualizer (cava)
+    enableCalendarEvents = true; # Calendar integration (khal)
+  };
+
+  plugins = {
+    # Emoji & Unicode Launcher plugin for DankMaterialShell
+    emojiLauncher.enable = true;
   };
 }

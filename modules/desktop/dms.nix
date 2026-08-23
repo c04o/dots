@@ -1,8 +1,9 @@
 {inputs, ...}: {
   imports = [
+    inputs.dms.homeModules.default
     inputs.dms-plugin-registry.nixosModules.default
   ];
-  programs.dms-shell = {
+  programs.dank-material-shell = {
     enable = true;
     systemd = {
       enable = true; # Systemd service for auto-start

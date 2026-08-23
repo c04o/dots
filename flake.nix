@@ -40,6 +40,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Desktop shell for wayland
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell"; #`-git` branch of dms
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # get dms plugins
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # A sleek and minimal desktop shell thoughtfully crafted for Wayland.
     noctalia = {
       url = "github:noctalia-dev/noctalia";

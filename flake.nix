@@ -36,7 +36,8 @@
 
     # Nix-native configuration for niri
     niri = {
-      url = "github:sodiboo/niri-flake";
+      # libdisplay-info_0_3 niri issue
+      url = "github:sodiboo/niri-flake?rev=6bb99ff875919f03ea6054026619d999061e1170";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -77,7 +78,9 @@
           specialArgs = {inherit inputs;};
           modules = [
             {
-              nixpkgs.overlays = [inputs.niri.overlays.niri];
+              nixpkgs.overlays = [
+                inputs.niri.overlays.niri
+              ];
 
               nix.settings = {
                 extra-substituters = [

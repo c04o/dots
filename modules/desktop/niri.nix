@@ -9,10 +9,9 @@
       }
 
       spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-      spawn-at-startup "xwayland-satellite"
+      spawn-at-startup "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
       spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
       spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
-      spawn-at-startup "noctalia"
 
       input {
           keyboard {
@@ -169,21 +168,4 @@
           Mod+Period { expel-window-from-column; }
       }
   '';
-
-  # resilient systemd service for xwayland-satellite
-  systemd.user.services.xwayland-satellite = {
-    Unit = {
-      Description = "Xwayland Satellite";
-      PartOf = ["graphical-session.target"];
-      After = ["graphical-session.target"];
-    };
-    Service = {
-      # some users need to unset WAYLAND_DISPLAY, others won't
-      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
-      Restart = "always";
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
 }

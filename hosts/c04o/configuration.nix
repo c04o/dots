@@ -79,6 +79,7 @@
   };
 
   programs = {
+    xwayland.enable = true;
     dconf.enable = true;
     fish.enable = true;
     niri.enable = true;

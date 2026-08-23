@@ -23,12 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Desktop shell for wayland
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell"; #`-git` branch of dms
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # get dms plugins
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";

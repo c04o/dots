@@ -3,7 +3,11 @@
   inputs,
   ...
 }: {
-  programs.dms-shell = {
+  # expose dms-shell options to home-manager
+  imports = [
+    inputs.dms.homeModules.dank-material-shell
+  ];
+  programs.dank-material-shell = {
     enable = true;
     package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
     systemd = {

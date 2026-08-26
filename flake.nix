@@ -1,83 +1,73 @@
 {
-  description = "my nixos dots";
+  description = "NixOS niri rice";
 
-  # define where the code is pulled from
   inputs = {
-    # Elephant acts as a unified backend service that aggregates data from various sources (desktop applications, files, clipboard history, etc.)
-    elephant.url = "github:abenz1267/elephant";
-
-    # Manage a user environment using Nix
-    home-manager = {
-      url = "gihub:nix-community/home-manager";
-      # prevent duplicate packages
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Nix-native configuration for niri
-    niri.url = "github:sodiboo/niri-flake";
-
-    # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
-    nvf.url = "github:NotAShelf/nvf";
-
     # Nix Packages collection & NixOS
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Multi-Purpose Launcher with a lot of features. Highly Customizable and fast.
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
+    # ❄️ Simplify Nix Flakes with the module system
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Import all nix files in a directory tree.
+    import-tree.url = "github:vic/import-tree";
+
+    # Manage a user environment using Nix
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Community-driven Nix Flake for the Zen browser
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-  };
-
-  outputs = {
-    self,
-    # defined above
-    elephant,
-    home-manager,
-    niri,
-    nvf,
-    nixpkgs,
-    walker,
-    zen-browser,
-    ...
-  } @ inputs: let
-    # capture all inputs into a variable for easy passing
-    # import for passing colorscheme, fonts
-    theme = import ./theme/default.nix;
-  in {
-    # define and name the system
-    # trigger this build with 'nixos-rebuild switch --flake .#c04o'
-    nixosConfigurations."c04o" = nixpkgs.lib.nixosSystem {
-      # intel/amd 64-bit architecture
-      system = "x86_64-linux";
-
-      # pass inputs to all modules (configuration.nix)
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./configuration.nix
-
-        # hook Home Manager into the build process
-        home-manager.nixosModules.home-manager
-        {
-          # use the system's package list (saves disk space)
-          home-manager.useGlobalPkgs = true;
-
-          # install packages to /etc/profiles instead of ~/.nix-profile
-          home-manager.useUserPackages = true;
-
-          # import user config
-          home-manager.users.coni = import ./home.nix;
-
-          # let home-manager files use theme
-          home-manager.extraSpecialArgs = {inherit inputs theme;};
-
-          # if an existing config file conflicts, rename it to .backup instead of failing
-          home-manager.backupFileExtension = "backup";
-        }
-      ];
+    # Nix Flake for Helium browser. Auto updates, Policy support, NixOS module, Home-manager module
+    helium-flake = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # get dms plugins
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Modular, extensible and distro-agnostic Neovim configuration framework for Nix/NixOS
+    nvf.url = "github:notashelf/nvf";
+
+    # ❄️ Soothing pastel theme for Nix
+    catppuccin.url = "github:catppuccin/nix";
   };
+
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [];
+
+      systems = ["x86_64-linux"];
+
+      flake = {
+        nixosConfigurations.c04o = inputs.nixpkgs.lib.nixosSystem {
+          # pass 'theme' to traditional nixos files (like configuration.nix)
+          specialArgs = {inherit inputs;};
+          modules = [
+            # host config paths
+            ./hosts/c04o/configuration.nix
+            ./hosts/c04o/hardware-configuration.nix
+
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              # pass 'theme' to the runtime home manager evaluation layer
+              home-manager.extraSpecialArgs = {inherit inputs;};
+
+              # assign user config directly to module path
+              home-manager.users.coni = import ./modules/home.nix;
+            }
+          ];
+        };
+      };
+    };
 }

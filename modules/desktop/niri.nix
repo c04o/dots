@@ -37,7 +37,7 @@
       }
 
       layout {
-          gaps 4
+          gaps 0
           center-focused-column "never"
 
           default-column-width { proportion 0.5; }
@@ -90,7 +90,7 @@
       }
 
       window-rule {
-          geometry-corner-radius 8.0 8.0 8.0 8.0
+          geometry-corner-radius 12
           clip-to-geometry true
       }
       window-rule {

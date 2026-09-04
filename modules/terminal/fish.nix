@@ -1,72 +1,84 @@
 {...}: {
-  programs.fish = {
-    enable = true;
+  programs = {
+    eza = {
+      enable = true;
+      enableFishIntegration = true;
+      git = true;
+      icons = "auto";
+      extraOptions = [
+        "--group-directories-first"
+      ];
+    };
 
-    interactiveShellInit = ''
-      # disable welcome greeting
-      set -g fish_greeting
+    fish = {
+      enable = true;
 
-      # custom fzf script
-      function f
-        fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
-            --bind 'enter:become(nvim {})' \
-            --bind 'alt-c:execute-silent(cat {} | wl-copy)+abort' \
-            --bind 'alt-p:execute-silent(echo -n {} | wl-copy)+abort' \
-            --header (echo -e 'Enter \033[33m\033[0m • Alt-C \033[33m󰆏\033[0m • Alt+P \033[33m\033[0m') \
-            --layout=reverse --border
-      end
-    '';
+      interactiveShellInit = ''
+        # disable welcome greeting
+        set -g fish_greeting
 
-    shellAliases = {
-      # system & tools
-      c = "clear";
-      v = "nvim";
-      b = "bat";
-      cat = "bat";
-      ff = "fastfetch";
-      y = "yazi";
-      bt = "btop";
+        # custom fzf script
+        function f
+          fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
+              --bind 'enter:become(nvim {})' \
+              --bind 'alt-c:execute-silent(cat {} | wl-copy)+abort' \
+              --bind 'alt-p:execute-silent(echo -n {} | wl-copy)+abort' \
+              --header (echo -e 'Enter \033[33m\033[0m • Alt-C \033[33m󰆏\033[0m • Alt+P \033[33m\033[0m') \
+              --layout=reverse --border
+        end
+      '';
 
-      # safe core utilities
-      r = "rm -I";
-      rf = "rm -rf";
-      cp = "cp -iv";
-      mv = "mv -iv";
-      mkdir = "mkdir -p";
+      shellAliases = {
+        # system & tools
+        c = "clear";
+        v = "nvim";
+        b = "bat";
+        cat = "bat";
+        ff = "fastfetch";
+        y = "yazi";
+        bt = "btop";
 
-      # clipboard
-      yc = "wl-copy <";
-      yp = "wl-paste";
+        # safe core utilities
+        r = "rm -I";
+        rf = "rm -rf";
+        cp = "cp -iv";
+        mv = "mv -iv";
+        mkdir = "mkdir -p";
 
-      # modern search
-      grep = "rg";
-      find = "fd";
+        # clipboard
+        yc = "wl-copy";
+        yp = "wl-paste";
 
-      # nix
-      rb = "sudo nixos-rebuild switch --flake .";
-      rt = "sudo nixos-rebuild test --flake .";
-      ng = "nix-collect-garbage -d";
-      nfu = "nix flake update";
-      ns = "nix search nixpkgs";
-      aj = "alejandra .";
+        # modern search
+        grep = "rg";
+        find = "fd";
 
-      # dir nav
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      ls = "eza --icons --group-directories-first";
-      e = "eza -lh --icons --git --group-directories-first --tree --level=2";
-      ee = "eza -lah --icons --git --group-directories-first";
+        # nix
+        rb = "sudo nixos-rebuild switch --flake .";
+        rt = "sudo nixos-rebuild test --flake .";
+        ng = "nix-collect-garbage -d";
+        nfu = "nix flake update";
+        ns = "nix search nixpkgs";
+        aj = "alejandra .";
 
-      # git
-      g = "git";
-      lg = "lazygit";
-      ga = "git add";
-      gc = "git commit";
-      gp = "git push";
-      gpf = "git push --force-with-lease";
-      gco = "git checkout";
-      gl = "git log --graph --oneline --all --decorate";
-      gr = "git restore";
+        # dir nav
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        ls = "eza --icons=auto --group-directories-first";
+        e = "eza -l --header --icons=auto --git --group-directories-first --tree --level=2";
+        ee = "eza -la --header --icons=auto --git --group-directories-first";
+
+        # git
+        g = "git";
+        lg = "lazygit";
+        ga = "git add";
+        gc = "git commit";
+        gp = "git push";
+        gpf = "git push --force-with-lease";
+        gco = "git checkout";
+        gl = "git log --graph --oneline --all --decorate";
+        gr = "git restore";
+      };
     };
   };
 }

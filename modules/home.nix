@@ -24,7 +24,6 @@
       bat
       wl-clipboard
       cliphist
-      eza
       fzf
       gimp
       imv
